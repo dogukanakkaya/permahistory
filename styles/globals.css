@@ -1,3 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800;900&display=swap");
+@import url('../node_modules/bootstrap-icons/font/bootstrap-icons.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    @apply dark:bg-[#0d011c] font-[Nunito] text-gray-500 dark:text-gray-200;
+}
+
+.nav-item{
+    @apply mr-5 block items-center hover:text-gray-900 transition-colors duration-200;    
+}
