@@ -9,7 +9,7 @@ body {
 }
 
 .nav-item{
-    @apply mr-5 block items-center hover:text-gray-900 transition-colors duration-200;    
+    @apply mb-5 sm:mb-0 sm:mr-6 block items-center hover:text-gray-50 transition-colors duration-200;    
 }
 
 .text-main {

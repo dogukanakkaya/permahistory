@@ -33,13 +33,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="h-[calc(100vh-theme('spacing.20'))] container flex justify-between items-center">
-        <div className="w-3/5 h-full sm:max-w-xl lg:max-w-2xl 2xl:max-w-3xl flex flex-col justify-evenly">
-          <div className='mb-5'>
-            <h1 className='text-6xl xl:text-7xl font-semibold text-white'>
+      <div className="lg:h-[calc(100vh-theme('spacing.20'))] container flex flex-wrap justify-between items-center">
+        <div className="w-full lg:w-3/5 lg:h-full lg:max-w-2xl 2xl:max-w-3xl flex flex-col lg:justify-evenly gap-10">
+          <div>
+            <h1 className='text-4xl xs:text-6xl xl:text-7xl font-semibold text-white'>
               Next generation <span className='text-main'>permahistory</span> notebook on <span className='text-main'>the arweave blockchain</span>
             </h1>
-            <p className='text-gray-400 mt-5 uppercase text-sm tracking-wider'>
+            <p className='text-gray-400 mt-5 uppercase text-xs xs:text-sm tracking-wider'>
               create notes, diaries for the future that are<br />
               <strong>permanently</strong> stored on the <strong>arweave blockchain</strong>.
             </p>
@@ -51,7 +51,7 @@ const Home: NextPage = () => {
             </a>
           </div>
         </div>
-        <div className="w-2/5 h-full flex flex-col justify-evenly">
+        <div className="w-full lg:w-2/5 h-full flex flex-col justify-evenly gap-10 mt-10 lg:mt-0">
           <div className='w-full'>
             <div className='bg-gradient-to-r bg-gray-900 rounded-tl-xl rounded-tr-xl p-2'>
               <div>
@@ -60,7 +60,7 @@ const Home: NextPage = () => {
                 <span className='text-main'>Permanote.txt</span>
               </div>
             </div>
-            <div className='flex items-center w-full text-lg p-4 whitespace-pre-line dark:bg-[#010102] h-96 rounded-bl-xl rounded-br-xl'>
+            <div className='flex items-center w-full text-lg xl:text-xl p-4 whitespace-pre-line dark:bg-[#010102] h-96 rounded-bl-xl rounded-br-xl'>
               <Typewriter
                 options={{
                   delay: 25,
@@ -90,7 +90,7 @@ const Home: NextPage = () => {
               <p className='text-center text-xs sm:text-sm text-gray-400'>All of your data is in decentralized <a href="https://www.arweave.org/" title="Arweave" target="_blank">arweave</a> blockchain.</p>
             </div>
             <div className='w-1/3'>
-              <h3 className='flex flex-col items-center'><i className='bi bi-key text-4xl text-main'></i> Privacy</h3>
+              <h3 className='flex flex-col items-center'><i className='bi bi-key text-4xl text-main'></i> Private</h3>
               <p className='text-center text-xs sm:text-sm text-gray-400'>You can also write private notes as well as public ones.</p>
             </div>
           </div>
