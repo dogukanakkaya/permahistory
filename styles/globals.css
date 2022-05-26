@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
 @import url('../node_modules/bootstrap-icons/font/bootstrap-icons.css');
 @tailwind base;
 @tailwind components;
@@ -10,4 +10,12 @@ body {
 
 .nav-item{
     @apply mr-5 block items-center hover:text-gray-900 transition-colors duration-200;    
+}
+
+.text-main {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-500 to-red-600;
+}
+
+.bi {
+    @apply align-middle;
 }
