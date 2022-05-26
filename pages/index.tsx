@@ -41,7 +41,7 @@ const Home: NextPage = () => {
             </h1>
             <p className='text-gray-400 mt-5 uppercase text-xs xs:text-sm tracking-wider'>
               create notes, diaries for the future that are<br />
-              <strong>permanently</strong> stored on the <strong>arweave blockchain</strong>.
+              <b>permanently</b> stored on the <b>arweave blockchain</b>.
             </p>
           </div>
           <div>
@@ -68,11 +68,11 @@ const Home: NextPage = () => {
                 }}
                 onInit={(typewriter) => {
                   typewriter
-                    .typeString('<i class="bi bi-chevron-right text-xs text-main"></i> Wanna write a <strong>permanent</strong> future note to yourself?\n\n')
+                    .typeString('<i class="bi bi-chevron-right text-xs text-main"></i> Wanna write a <b>permanent</b> future note to yourself?\n\n')
                     .pauseFor(1000)
-                    .typeString('<i class="bi bi-chevron-right text-xs text-main"></i> Maybe a <strong>permanent</strong> future guess about the human kind?\n\n')
+                    .typeString('<i class="bi bi-chevron-right text-xs text-main"></i> Maybe a <b>permanent</b> future guess about the human kind?\n\n')
                     .pauseFor(1000)
-                    .typeString('<i class="bi bi-chevron-right text-xs text-main"></i> Or maybe just a <strong>permanent</strong> note from the past?')
+                    .typeString('<i class="bi bi-chevron-right text-xs text-main"></i> Or maybe just a <b>permanent</b> note from the past?')
                     .pauseFor(1000)
                     .deleteAll()
                     .start();
