@@ -1,15 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Arweave from 'arweave';
 import Typewriter from 'typewriter-effect';
 
 const Home: NextPage = () => {
-  // const arweave = Arweave.init({
-  //   host: 'arweave.net',
-  //   port: 443,
-  //   protocol: 'https'
-  // });
-
   return (
     <>
       <Head>
