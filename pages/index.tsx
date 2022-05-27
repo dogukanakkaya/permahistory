@@ -1,29 +1,14 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Arweave from 'arweave';
-import { useEffect } from 'react';
 import Typewriter from 'typewriter-effect';
 
 const Home: NextPage = () => {
-  const arweaveGetAddress = async () => {
-    const arweave = Arweave.init({
-      host: 'arweave.net',
-      port: 443,
-      protocol: 'https'
-    });
-    window.arweaveWallet.connect(['ACCESS_ADDRESS']);
-
-    const address = await window.arweaveWallet.getActiveAddress();
-    console.log(address);
-  }
-
-  useEffect(() => {
-    window.addEventListener("arweaveWalletLoaded", arweaveGetAddress);
-
-    return () => {
-      window.removeEventListener('arweaveWalletLoaded', arweaveGetAddress);
-    }
-  }, []);
+  // const arweave = Arweave.init({
+  //   host: 'arweave.net',
+  //   port: 443,
+  //   protocol: 'https'
+  // });
 
   return (
     <>
