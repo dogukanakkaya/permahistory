@@ -11,6 +11,9 @@ const MDEditor = dynamic(
 
 function Editor() {
     const [value, setValue] = useState('');
+
+    // todo: create your own editor with react-markdown
+    // any of the editor's out there not satisfies me
     return (
         <div className='mt-5 dark:invert'>
             <MDEditor
