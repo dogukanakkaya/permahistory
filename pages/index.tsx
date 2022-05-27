@@ -28,7 +28,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Permahistory</title>
+        <title>Permahistory - Home</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
       <div className="lg:h-[calc(100vh-theme('spacing.20'))] container flex flex-wrap justify-between items-center">
         <div className="w-full lg:w-3/5 lg:h-full lg:max-w-2xl 2xl:max-w-3xl flex flex-col lg:justify-evenly gap-10">
           <div>
-            <h1 className='text-4xl xs:text-6xl xl:text-7xl font-semibold text-white'>
+            <h1 className='text-4xl sm:text-6xl xl:text-7xl font-semibold text-white'>
               Next generation <span className='text-main'>permahistory</span> notebook on <span className='text-main'>the arweave blockchain</span>
             </h1>
             <p className='text-gray-400 mt-5 uppercase text-xs xs:text-sm tracking-wider'>

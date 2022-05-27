@@ -8,7 +8,7 @@ function Header() {
         <header className='h-20 bg-white dark:bg-[#010102] shadow'>
             <div className="container flex items-center justify-between h-full">
                 <div className='relative z-50 mx-5 sm:mx-0'>
-                    <Link href="/"><img className='cursor-pointer w-24 md:w-28' src="/vercel-light.png" alt="Permahistory" /></Link>
+                    <Link href="/"><img className='cursor-pointer w-8 md:w-12' src="/logo.png" alt="Permahistory" /></Link>
                 </div>
                 <nav className={`fixed z-40 inset-0 h-full bg-black bg-opacity-25 w-full sm:static sm:block ${!navOpen ? 'hidden' : ''}`} onClick={() => console.log("hi")}>
                     <div className="h-full overflow-y-auto flex sm:justify-end sm:items-center overflow-hidden bg-white dark:bg-[#010102] mr-40 sm:mr-0">
