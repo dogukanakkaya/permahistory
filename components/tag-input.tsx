@@ -27,8 +27,7 @@ function TagInput({ tags, setTags, ...otherProps }: Props) {
                 placeholder='add tags for people to find your writings (public only)'
                 classNames={{
                     tagInput: 'block mb-4',
-                    tagInputField: 'px-4 py-2 w-full outline-none dark:text-white dark:bg-black',
-                    selected: 'selectedClass',
+                    tagInputField: 'w-full',
                     tag: 'px-2 py-1 mr-2 mb-2 inline-block text-sm bg-gray-200 dark:bg-gray-700',
                     remove: 'ml-2'
                 }}

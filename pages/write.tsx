@@ -89,7 +89,7 @@ function Write() {
                             <h1 className='lg:text-4xl'>Write anything...</h1>
                             <p className='text-xs sm:text-sm text-gray-400'>remember that you have to pay some transaction fees in order to add your writings to the blockchain.</p>
                         </div>
-                        <div>
+                        <form>
                             <div className="mb-3">
                                 <input onChange={e => setTitle(e.target.value)} type="text" value={title} placeholder='Enter your title *' className='w-full' />
                             </div>
@@ -98,7 +98,7 @@ function Write() {
                             </div>
                             <Editor data={content} setData={setContent} className="mb-3 dark:invert" />
                             <TagInput tags={tags} setTags={setTags} className="mb-3" />
-                        </div>
+                        </form>
                         <div className="text-right mt-5">
                             {
                                 loading ? 'Please wait...' :
@@ -113,9 +113,9 @@ function Write() {
                             }
                         </div>
                         {
-                            result?.status && (
-                                <div className={`mt-5 border-l-4 ${result.status ? 'border-green-500' : 'border-red-500'} bg-gray-200 dark:bg-gray-700`}>
-                                    <div className="text-white p-2">
+                            result?.message && (
+                                <div className={`mt-5 border-l-4 ${result.status ? 'border-green-500' : 'border-red-500'} bg-gray-100 dark:bg-gray-700`}>
+                                    <div className="dark:text-white p-2">
                                         {result.message}
                                     </div>
                                 </div>
