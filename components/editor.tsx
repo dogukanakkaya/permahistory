@@ -20,6 +20,7 @@ function Editor({ data, setData, ...otherProps }: Props) {
                     rehypePlugins: [[rehypeSanitize]],
                 }}
                 height={600}
+                placeholder='Enter your content'
             />
         </div>
     );

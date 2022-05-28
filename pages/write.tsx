@@ -4,35 +4,50 @@ import Arweave from 'arweave';
 import { useState } from 'react';
 import TagInput from '../components/tag-input';
 import { Tag } from 'react-tag-input';
+import config from '../config';
 
 function Write() {
-    const [data, setData] = useState('');
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [content, setContent] = useState('');
     const [tags, setTags] = useState<Tag[]>([]);
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState<Result | null>(null);
 
     const arweave = Arweave.init({
-        // host: 'arweave.net',
-        // port: 443,
-        // protocol: 'https'
-        host: '127.0.0.1',
-        port: 1984,
-        protocol: 'http'
+        host: config.ARWEAVE_HOST,
+        port: config.ARWEAVE_PORT,
+        protocol: config.ARWEAVE_PROTOCOL
     });
 
     const transactPublic = async () => {
         if (tags.length > 5) {
-            alert('You can add up to 5 tags');
+            alert('You can add up to 5 tags.');
+            return;
+        }
+
+        if (!title || !content) {
+            alert('You must fill title and content.');
             return;
         }
 
         setLoading(true);
         try {
-            const tx = await arweave.createTransaction({ data });
+            const tx = await arweave.createTransaction({
+                data: JSON.stringify({
+                    title,
+                    description,
+                    content,
+                    createdAt: new Date().toISOString(),
+                    tags: tags.map(tag => tag.text)
+                })
+            });
 
+            tx.addTag('App-Name', config.APP_NAME);
             tx.addTag('Content-Type', 'text/plain');
+            tx.addTag('Visibility', 'public');
             if (tags.length) {
-                tags.forEach(tag => tx.addTag(`tag-${tag.id}`, tag.text));
+                tags.forEach(tag => tx.addTag('topics', tag.text));
             }
 
             await arweave.transactions.sign(tx);
@@ -44,11 +59,9 @@ function Write() {
                 throw Error('Transaction failed');
             }
 
-            // const lastTx = await arweave.wallets.getLastTransactionID(await window.arweaveWallet.getActiveAddress());
-
-            // const txData = await arweave.transactions.getData(lastTx, { decode: true, string: true });
-
-            setData('');
+            setTitle('');
+            setDescription('');
+            setContent('');
             setTags([]);
             setResult({ status: true, message: 'Transaction successfully submitted.' });
         } catch (err: any) {
@@ -58,7 +71,7 @@ function Write() {
 
         setTimeout(() => {
             setResult(null);
-        }, 5000)
+        }, 5000);
     }
 
     return (
@@ -69,16 +82,22 @@ function Write() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <div className="container mb-10">
-                <div className='flex flex-col items-center mt-10'>
+            <div className="min-h-[calc(100vh-theme('spacing.40'))] container my-10">
+                <div className='flex flex-col items-center'>
                     <div className='md:w-5/6 lg:w-2/3'>
-                        <div className='text-center'>
+                        <div className='text-center mb-2'>
                             <h1 className='lg:text-4xl'>Write anything...</h1>
                             <p className='text-xs sm:text-sm text-gray-400'>remember that you have to pay some transaction fees in order to add your writings to the blockchain.</p>
                         </div>
                         <div>
-                            <Editor data={data} setData={setData} className="mt-5 dark:invert" />
-                            <TagInput tags={tags} setTags={setTags} className="mt-5" />
+                            <div className="mb-3">
+                                <input onChange={e => setTitle(e.target.value)} type="text" value={title} placeholder='Enter your title *' className='px-4 py-2 w-full outline-none dark:text-white dark:bg-black' />
+                            </div>
+                            <div className="mb-3">
+                                <input onChange={e => setDescription(e.target.value)} type="text" value={description} placeholder='Enter your description' className='px-4 py-2 w-full outline-none dark:text-white dark:bg-black' />
+                            </div>
+                            <Editor data={content} setData={setContent} className="mb-3 dark:invert" />
+                            <TagInput tags={tags} setTags={setTags} className="mb-3" />
                         </div>
                         <div className="text-right mt-5">
                             {
