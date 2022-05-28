@@ -3,7 +3,7 @@ import { timeSince } from '../utils';
 
 function HistoryItem({ item }: { item: HistoryItem }) {
     return (
-        <Link href="/">
+        <Link href={'/history/[txId]'} as={`/history/${item.txId}`}>
             <div className='rounded-lg p-6 shadow cursor-pointer bg-white bg-hover:bg-gray-100 dark:bg-[#010102] hover:dark:bg-black hover:dark:shadow-xl'>
                 <div className="text-gray-400">
                     <div className='flex justify-between'>
@@ -28,6 +28,7 @@ export interface HistoryItem {
     content: string;
     createdAt: Date;
     tags: string[];
+    txId: string;
 }
 
 export default HistoryItem
