@@ -2,20 +2,13 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { type HistoryItem } from '../../components/history-item';
-import config from '../../config';
-import Arweave from 'arweave';
+import { arweave } from '../../utils';
 
 function SingleHistory() {
     const [item, setItem] = useState<HistoryItem | null>(null);
     const router = useRouter();
 
     const { txId } = router.query;
-
-    const arweave = Arweave.init({
-        host: config.ARWEAVE_HOST,
-        port: config.ARWEAVE_PORT,
-        protocol: config.ARWEAVE_PROTOCOL
-    });
 
     useEffect(() => {
         if (router.isReady) {

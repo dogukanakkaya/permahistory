@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import Editor from '../components/editor';
-import Arweave from 'arweave';
 import { useState } from 'react';
 import TagInput from '../components/tag-input';
 import { Tag } from 'react-tag-input';
 import config from '../config';
+import { arweave } from '../utils';
 
 function Write() {
     const [title, setTitle] = useState('');
@@ -14,13 +14,10 @@ function Write() {
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState<Result | null>(null);
 
-    const arweave = Arweave.init({
-        host: config.ARWEAVE_HOST,
-        port: config.ARWEAVE_PORT,
-        protocol: config.ARWEAVE_PROTOCOL
-    });
+    // todo: return encrypted
+    const arweaveEncrypt = (value: string): string => value;
 
-    const transact = async ({ data, visibility }: { data: string, visibility: Visibility }) => {
+    const transact = async ({ visibility }: { visibility: Visibility }) => {
         if (tags.length > 3) {
             alert('You can add up to 5 tags.');
             return;
@@ -33,7 +30,16 @@ function Write() {
 
         setLoading(true);
         try {
-            const tx = await arweave.createTransaction({ data });
+            const txData = JSON.stringify({
+                title,
+                description,
+                content,
+                createdAt: new Date().toISOString(),
+                tags: tags.map(tag => tag.text)
+            });
+            const tx = await arweave.createTransaction({
+                data: visibility === Visibility.Private ? arweaveEncrypt(txData) : txData
+            });
 
             tx.addTag('App-Name', config.APP_NAME);
             tx.addTag('Visibility', visibility);
@@ -64,12 +70,6 @@ function Write() {
         setTimeout(() => {
             setResult(null);
         }, 5000);
-    }
-
-    const transactPublic = () => transact({ data: content, visibility: Visibility.Public })
-    const transactPrivate = async () => {
-        // const data = await window.arweaveWallet.encrypt(content, {});
-        transact({ data: content, visibility: Visibility.Private })
     }
 
     return (
@@ -104,7 +104,7 @@ function Write() {
                                         <button className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 mr-4">
                                             Save Privately <i className='bi bi-lock ml-2'></i>
                                         </button>
-                                        <button onClick={() => transactPublic()} className="font-semibold text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:outline-none shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 rounded-lg text-sm px-5 py-2.5">
+                                        <button onClick={() => transact({ visibility: Visibility.Public })} className="font-semibold text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:outline-none shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 rounded-lg text-sm px-5 py-2.5">
                                             Save Publicly <i className='bi bi-save ml-2'></i>
                                         </button>
                                     </>

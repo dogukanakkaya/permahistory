@@ -1,16 +1,11 @@
-import Arweave from 'arweave';
-import config from '../config';
 import { useEffect, useState } from 'react';
+import config from '../config';
+import { arweave } from '../utils';
 import HistoryItem, { type HistoryItem as HistoryItemType } from '../components/history-item';
 import Head from 'next/head';
 
 function History() {
     const [history, setHistory] = useState<HistoryItemType[]>([]);
-    const arweave = Arweave.init({
-        host: config.ARWEAVE_HOST,
-        port: config.ARWEAVE_PORT,
-        protocol: config.ARWEAVE_PROTOCOL
-    });
 
     const getTransactions = async () => {
         const response = await fetch(`${config.ARWEAVE_URL}/graphql`, {
@@ -52,6 +47,8 @@ function History() {
 
         // todo: find a better way to do this (maybe saving txId when making transaction)
         setHistory(txDatas.map(txData => {
+            console.log(txData);
+
             const d = JSON.parse(txData);
             d.txId = txIds[txDatas.indexOf(txData)];
 
