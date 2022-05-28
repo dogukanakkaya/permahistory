@@ -55,9 +55,9 @@ function History() {
 
         const txIds: string[] = data.transactions.edges.map((edge: any /* todo: fix type */) => edge.node.id);
 
-        const history = (await Promise.all(txIds.map((txId) => arweave.transactions.getData(txId, { decode: true, string: true })))).map(JSON.parse);
+        const txDatas = await Promise.all(txIds.map((txId) => arweave.transactions.getData(txId, { decode: true, string: true }))) as string[];
 
-        setHistory(history);
+        setHistory(txDatas.map(txData => JSON.parse(txData)));
     }
 
     useEffect(() => {
