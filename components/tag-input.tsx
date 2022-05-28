@@ -8,7 +8,7 @@ enum Delimiter {
 
 function TagInput({ tags, setTags, ...otherProps }: Props) {
     const handleAddition = (tag: Tag) => {
-        if (tags.length > 5) {
+        if (tags.length > 3) {
             alert('You can add up to 5 tags');
             return;
         }

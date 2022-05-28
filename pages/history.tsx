@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Arweave from 'arweave';
 import config from '../config';
 import { useEffect, useState } from 'react';
@@ -26,23 +25,14 @@ function History() {
                                 name: "App-Name",
                                 values: ["Permahistory"]
                             }
+                            {
+                                name: "Visibility",
+                                values: ["public"]
+                            }
                         ]) {
                             edges {
                                 node {
                                     id
-                                    recipient
-                                    owner {
-                                        address
-                                        key
-                                    }
-                                    data {
-                                        size
-                                        type
-                                    }
-                                    tags {
-                                        name
-                                        value
-                                    }
                                 }
                             }
                         }
@@ -66,9 +56,9 @@ function History() {
 
     return (
         <div className="min-h-[calc(100vh-theme('spacing.40'))] container my-10">
-            <div className="flex flex-col gap-y-4">
+            <div className="grid lg:grid-cols-2 gap-4">
                 {
-                    history.map(h => <HistoryItem item={h} />)
+                    history.map((h, i) => <HistoryItem key={i} item={h} />)
                 }
             </div>
         </div>

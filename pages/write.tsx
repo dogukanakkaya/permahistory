@@ -21,7 +21,7 @@ function Write() {
     });
 
     const transactPublic = async () => {
-        if (tags.length > 5) {
+        if (tags.length > 3) {
             alert('You can add up to 5 tags.');
             return;
         }
