@@ -25,13 +25,15 @@ function Write() {
 
             await arweave.transactions.sign(tx);
 
-            const lastTx = await arweave.wallets.getLastTransactionID(await window.arweaveWallet.getActiveAddress());
+            const { status } = await arweave.transactions.post(tx);
 
-            const txData = await arweave.transactions.getData(lastTx, { decode: true, string: true });
+            if (status !== 200) {
+                throw Error('Transaction failed');
+            }
 
-            // why
-            console.log(txData);
+            // const lastTx = await arweave.wallets.getLastTransactionID(await window.arweaveWallet.getActiveAddress());
 
+            // const txData = await arweave.transactions.getData(lastTx, { decode: true, string: true });
 
             setLoading(false);
         } catch (err: any) {
