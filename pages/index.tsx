@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       <div className="lg:h-[calc(100vh-theme('spacing.20'))] container flex flex-wrap justify-between items-center mb-10 lg:mb-0">
         <div className="w-full lg:w-3/5 lg:h-full lg:max-w-2xl 2xl:max-w-3xl flex flex-col lg:justify-evenly gap-10">
           <div>
-            <h1 className='text-4xl sm:text-6xl xl:text-7xl font-semibold text-white'>
+            <h1 className='text-4xl sm:text-6xl xl:text-7xl font-semibold text-gray-900 dark:text-white'>
               Next generation <span className='text-main'>permahistory</span> notebook on <span className='text-main'>the arweave blockchain</span>
             </h1>
             <p className='text-gray-400 mt-5 uppercase text-xs xs:text-sm tracking-wider'>
@@ -38,7 +38,7 @@ const Home: NextPage = () => {
                 <span className='text-main'>Permanote.txt</span>
               </div>
             </div>
-            <div className='flex items-center w-full text-lg xl:text-xl p-4 whitespace-pre-line dark:bg-[#010102] h-96 rounded-bl-xl rounded-br-xl'>
+            <div className='flex items-center w-full text-lg xl:text-xl p-4 whitespace-pre-line text-gray-100 dark:text-inherit bg-gray-800 dark:bg-[#010102] h-96 rounded-bl-xl rounded-br-xl'>
               <Typewriter
                 options={{
                   delay: 25,

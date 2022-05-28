@@ -91,7 +91,7 @@ function Write() {
                         </div>
                         <div>
                             <div className="mb-3">
-                                <input onChange={e => setTitle(e.target.value)} type="text" value={title} placeholder='Enter your title *' className='px-4 py-2 w-full outline-none dark:text-white dark:bg-black' />
+                                <input onChange={e => setTitle(e.target.value)} type="text" value={title} placeholder='Enter your title *' className='w-full' />
                             </div>
                             <div className="mb-3">
                                 <input onChange={e => setDescription(e.target.value)} type="text" value={description} placeholder='Enter your description' className='px-4 py-2 w-full outline-none dark:text-white dark:bg-black' />
