@@ -2,13 +2,6 @@ import { useState } from 'react';
 import Link from 'next/link'
 
 function Header() {
-    const arConnect = async () => {
-        window.arweaveWallet.connect(['ACCESS_ADDRESS']);
-
-        const address = await window.arweaveWallet.getActiveAddress();
-        console.log(address);
-    }
-
     const [navOpen, setNavOpen] = useState(false);
 
     return (
@@ -20,12 +13,17 @@ function Header() {
                 <nav className={`fixed z-40 inset-0 h-full bg-black bg-opacity-25 w-full sm:static sm:block ${!navOpen ? 'hidden' : ''}`}>
                     <div className="h-full overflow-y-auto flex sm:justify-end sm:items-center overflow-hidden bg-white dark:bg-[#010102] mr-40 sm:mr-0">
                         <ul className='mx-5 mt-20 sm:mt-0 sm:mx-0 flex flex-col sm:flex-row items-center'>
+                            <li><Link href="/history"><a className="nav-item font-semibold">History</a></Link></li>
                             <li className='relative'>
-                                <span onClick={arConnect} className="nav-item cursor-pointer font-semibold">ArConnect</span>
-                                <span className="flex absolute h-1.5 w-1.5 -right-2 sm:right-4 top-0">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
-                                </span>
+                                <Link href="/my-history">
+                                    <a>
+                                        <span className="nav-item cursor-pointer font-semibold">My History</span>
+                                        <span className="flex absolute h-1.5 w-1.5 -right-2 sm:right-4 top-0">
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
+                                        </span>
+                                    </a>
+                                </Link>
                             </li>
                             <li><Link href="/about"><a className="nav-item">About</a></Link></li>
                             <li><Link href="/faq"><a className="nav-item">FAQ</a></Link></li>

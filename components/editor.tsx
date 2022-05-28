@@ -8,11 +8,11 @@ const MDEditor = dynamic(
     { ssr: false }
 );
 
-function Editor({ data, setData }: { data: string, setData: (value: string) => void }) {
+function Editor({ data, setData, ...otherProps }: Props) {
     // todo: create your own editor with react-markdown
     // any of the editor's out there not satisfies me
     return (
-        <div className='mt-5 dark:invert'>
+        <div {...otherProps}>
             <MDEditor
                 value={data}
                 onChange={setData}
@@ -23,6 +23,12 @@ function Editor({ data, setData }: { data: string, setData: (value: string) => v
             />
         </div>
     );
+}
+
+interface Props {
+    data: string;
+    setData: (value: string) => void;
+    [key: string]: any;
 }
 
 export default Editor;

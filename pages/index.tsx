@@ -11,7 +11,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="lg:h-[calc(100vh-theme('spacing.20'))] container flex flex-wrap justify-between items-center">
+      <div className="lg:h-[calc(100vh-theme('spacing.20'))] container flex flex-wrap justify-between items-center mb-10 lg:mb-0">
         <div className="w-full lg:w-3/5 lg:h-full lg:max-w-2xl 2xl:max-w-3xl flex flex-col lg:justify-evenly gap-10">
           <div>
             <h1 className='text-4xl sm:text-6xl xl:text-7xl font-semibold text-white'>
