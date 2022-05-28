@@ -11,7 +11,6 @@ function SingleHistory() {
 
     const { txId } = router.query;
 
-
     const arweave = Arweave.init({
         host: config.ARWEAVE_HOST,
         port: config.ARWEAVE_PORT,

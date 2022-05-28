@@ -2,6 +2,7 @@ import Arweave from 'arweave';
 import config from '../config';
 import { useEffect, useState } from 'react';
 import HistoryItem, { type HistoryItem as HistoryItemType } from '../components/history-item';
+import Head from 'next/head';
 
 function History() {
     const [history, setHistory] = useState<HistoryItemType[]>([]);
@@ -63,13 +64,21 @@ function History() {
     }, [])
 
     return (
-        <div className="min-h-[calc(100vh-theme('spacing.40'))] container my-10">
-            <div className="grid lg:grid-cols-2 gap-4">
-                {
-                    history.map((h, i) => <HistoryItem key={i} item={h} />)
-                }
+        <>
+            <Head>
+                <title>Permahistory - History</title>
+                <meta name="description" content="" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+
+            <div className="min-h-[calc(100vh-theme('spacing.40'))] container my-10">
+                <div className="grid lg:grid-cols-2 gap-4">
+                    {
+                        history.map((h, i) => <HistoryItem key={i} item={h} />)
+                    }
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

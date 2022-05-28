@@ -20,7 +20,7 @@ function Write() {
         protocol: config.ARWEAVE_PROTOCOL
     });
 
-    const transactPublic = async () => {
+    const transact = async ({ data, visibility }: { data: string, visibility: Visibility }) => {
         if (tags.length > 3) {
             alert('You can add up to 5 tags.');
             return;
@@ -33,19 +33,11 @@ function Write() {
 
         setLoading(true);
         try {
-            const tx = await arweave.createTransaction({
-                data: JSON.stringify({
-                    title,
-                    description,
-                    content,
-                    createdAt: new Date().toISOString(),
-                    tags: tags.map(tag => tag.text)
-                })
-            });
+            const tx = await arweave.createTransaction({ data });
 
             tx.addTag('App-Name', config.APP_NAME);
+            tx.addTag('Visibility', visibility);
             tx.addTag('Content-Type', 'text/plain');
-            tx.addTag('Visibility', 'public');
             if (tags.length) {
                 tags.forEach(tag => tx.addTag('topics', tag.text));
             }
@@ -56,7 +48,7 @@ function Write() {
 
             if (status !== 200) {
                 setResult({ status: false, message: 'There has been a problem while submitting transaction.' });
-                throw Error('Transaction failed');
+                throw Error('There has been a problem while submitting transaction.');
             }
 
             setTitle('');
@@ -72,6 +64,12 @@ function Write() {
         setTimeout(() => {
             setResult(null);
         }, 5000);
+    }
+
+    const transactPublic = () => transact({ data: content, visibility: Visibility.Public })
+    const transactPrivate = async () => {
+        // const data = await window.arweaveWallet.encrypt(content, {});
+        transact({ data: content, visibility: Visibility.Private })
     }
 
     return (
@@ -126,6 +124,11 @@ function Write() {
             </div>
         </>
     )
+}
+
+enum Visibility {
+    Private = 'private',
+    Public = 'public'
 }
 
 interface Result {

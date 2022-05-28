@@ -1,11 +1,5 @@
 import { WithContext as ReactTags, type Tag } from 'react-tag-input';
 
-enum Delimiter {
-    COMMA = 188,
-    ENTER = 13,
-    TAB = 9
-}
-
 function TagInput({ tags, setTags, ...otherProps }: Props) {
     const handleAddition = (tag: Tag) => {
         if (tags.length > 3) {
@@ -36,6 +30,11 @@ function TagInput({ tags, setTags, ...otherProps }: Props) {
     )
 }
 
+enum Delimiter {
+    COMMA = 188,
+    ENTER = 13,
+    TAB = 9
+}
 
 interface Props {
     tags: Tag[];
