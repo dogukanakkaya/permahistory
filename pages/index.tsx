@@ -24,7 +24,7 @@ const Home: NextPage = () => {
           </div>
           <div>
             <button type="button" className="font-semibold text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:outline-none shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 rounded-lg text-sm px-5 py-2.5 mr-4">Learn Permahistory</button>
-            <a href="https://www.arweave.org/" title="Arweave" target="_blank" className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700">
+            <a href="https://www.arweave.org/" title="Arweave" target="_blank" rel="noreferrer" className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700">
               Learn Arweave
             </a>
           </div>
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
             </div>
             <div className='w-1/3'>
               <h3 className='flex flex-col items-center'><i className='bi bi-boxes text-4xl text-main'></i> Decentralized</h3>
-              <p className='text-center text-xs sm:text-sm text-gray-400'>All of your data is in decentralized <a href="https://www.arweave.org/" title="Arweave" target="_blank">arweave</a> blockchain.</p>
+              <p className='text-center text-xs sm:text-sm text-gray-400'>All of your data is in decentralized <a href="https://www.arweave.org/" title="Arweave" target="_blank" rel="noreferrer">arweave</a> blockchain.</p>
             </div>
             <div className='w-1/3'>
               <h3 className='flex flex-col items-center'><i className='bi bi-key text-4xl text-main'></i> Private</h3>
