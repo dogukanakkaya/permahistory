@@ -21,3 +21,5 @@ You can now create public writings and see those in history page.
 - Option to connect with Arweave Web Wallet as well as ArConnect.
 - Functionality to send messages to future and allow encryption only at certain date. (I'll check Smartweave for this, i don't exactly know how to achieve this in decentralized way.)
 - Send writings as mails at certain date. (Again i don't exactly know how to achieve this, i'll search.)
+
+<img width="1471" alt="Screen Shot 2022-05-29 at 13 18 25" src="https://user-images.githubusercontent.com/51231605/170863117-cb4a11a6-3392-4520-9018-7c8128f2c9c6.png">
