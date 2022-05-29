@@ -24,4 +24,4 @@ You can now create public writings and see those in history page.
 - Pagination for history.
 - Bundling or grouping writings.
 
-<img width="1471" alt="Screen Shot 2022-05-29 at 13 18 25" src="https://user-images.githubusercontent.com/51231605/170863117-cb4a11a6-3392-4520-9018-7c8128f2c9c6.png">
+<img width="1805" alt="Screen Shot 2022-05-29 at 22 34 51" src="https://user-images.githubusercontent.com/51231605/170889914-c1799cbe-823d-42ba-82f0-ebb69134e2d3.png">
