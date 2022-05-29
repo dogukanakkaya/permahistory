@@ -1,34 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Permahistory
 
-## Getting Started
 
-First, run the development server:
+## Purpose
+Purpose of this project is to create permanent notes, diaries, future thoughts etc.
+- You can make a guess for the 2050 about the life outside Earth.
+- You can send a future note to yourself or your children for 2030.
+- You can write permanent diaries both publicly and privately.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Everything you write will be permanently stored on **Arweave Blockchain**, as well as this website (will be deployed to blockchain).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What has been done so far?
+Home page, history page, writing page stylings are completed. There is still things to do for both functionality and styling.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+You can now create public writings and see those in history page.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## What's left to be done
+- About, FAQ, Learn Permahistory pages.
+- Private writings and My History page.
+- Some styling and code refactoring.
+- Option to connect with Arweave Web Wallet as well as ArConnect.
+- Functionality to send messages to future and allow encryption only at certain date. (I'll check Smartweave for this, i don't exactly know how to achieve this in decentralized way.)
+- Send writings as mails at certain date. (Again i don't exactly know how to achieve this, i'll search.)
