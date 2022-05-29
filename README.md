@@ -15,8 +15,8 @@ Home page, history page, writing page stylings are completed. There is still thi
 You can now create public writings and see those in history page.
 
 ## What's left to be done
-- About, FAQ, Learn Permahistory pages.
-- Private writings and My History page.
+- About, FAQ, Learn Permahistory pages (static).
+- Private writings and My History page (interactive).
 - Some styling and code refactoring.
 - Option to connect with Arweave Web Wallet as well as ArConnect.
 - Functionality to send messages to future and allow encryption only at certain date. (I'll check Smartweave for this, i don't exactly know how to achieve this in decentralized way.)
