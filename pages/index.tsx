@@ -32,11 +32,9 @@ const Home: NextPage = () => {
         <div className="w-full lg:w-2/5 h-full flex flex-col justify-evenly gap-10 mt-10 lg:mt-0">
           <div className='w-full'>
             <div className='bg-gradient-to-r bg-gray-900 rounded-tl-xl rounded-tr-xl p-2'>
-              <div>
-                <i className='bi bi-chevron-left text-gray-500 mr-3'></i>
-                <i className='bi bi-chevron-right text-gray-500 mr-3'></i>
-                <span className='text-main'>Permanote.txt</span>
-              </div>
+              <i className='bi bi-chevron-left text-gray-500 mr-3'></i>
+              <i className='bi bi-chevron-right text-gray-500 mr-3'></i>
+              <span className='text-main'>Permanote.txt</span>
             </div>
             <div className='flex items-center w-full text-lg xl:text-xl p-4 whitespace-pre-line text-gray-100 dark:text-inherit bg-gray-800 dark:bg-[#010102] h-96 rounded-bl-xl rounded-br-xl'>
               <Typewriter

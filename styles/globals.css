@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 body {
-    @apply dark:bg-[#0d011c] font-[Nunito] text-gray-500 dark:text-gray-200;
+    @apply dark:bg-[#070d19] font-[Nunito] text-gray-500 dark:text-gray-200;
 }
 
 .nav-item{
