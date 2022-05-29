@@ -19,6 +19,7 @@ function TagInput({ tags, setTags, ...otherProps }: Props) {
                 handleAddition={handleAddition}
                 inputFieldPosition="top"
                 placeholder='add tags for people to find your writings (public only)'
+                autofocus={false}
                 classNames={{
                     tagInput: 'block mb-4',
                     tagInputField: 'w-full',
