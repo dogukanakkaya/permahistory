@@ -23,5 +23,6 @@ You can now create public writings and see those in history page.
 - Send writings as mails at certain date. (Again i don't exactly know how to achieve this, i'll search.)
 - Pagination for history.
 - Bundling or grouping writings.
+- Uploading certificates and other important documents that people have.
 
 <img width="1805" alt="Screen Shot 2022-05-29 at 22 34 51" src="https://user-images.githubusercontent.com/51231605/170889914-c1799cbe-823d-42ba-82f0-ebb69134e2d3.png">
