@@ -9,7 +9,6 @@ const Home: NextPage = () => {
       <Head>
         <title>Permahistory - Home</title>
         <meta name="description" content="" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="lg:h-[calc(100vh-theme('spacing.20'))] container flex flex-wrap justify-between items-center mb-10 lg:mb-0">

@@ -1,9 +1,12 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   reactStrictMode: true,
-// }
-
-// module.exports = nextConfig
-
 const removeImports = require('next-remove-imports')();
-module.exports = removeImports({});
+
+const nextConfig = {
+    reactStrictMode: true,
+    assetPrefix: '.',
+    images: { loader: 'custom' },
+};
+
+module.exports = {
+    ...removeImports({}),
+    ...nextConfig
+}

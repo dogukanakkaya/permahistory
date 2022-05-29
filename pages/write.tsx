@@ -62,14 +62,15 @@ function Write() {
             setContent('');
             setTags([]);
             setResult({ status: true, message: 'Transaction successfully submitted.' });
+
+            setTimeout(() => {
+                setResult(null);
+            }, 5000);
         } catch (err: any) {
             setResult({ status: false, message: 'Transaction failed for a reason.' });
+            console.log(err);
         }
         setLoading(false);
-
-        setTimeout(() => {
-            setResult(null);
-        }, 5000);
     }
 
     return (
@@ -77,7 +78,6 @@ function Write() {
             <Head>
                 <title>Permahistory - Write</title>
                 <meta name="description" content="" />
-                <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <div className="min-h-[calc(100vh-theme('spacing.40'))] container my-10">
