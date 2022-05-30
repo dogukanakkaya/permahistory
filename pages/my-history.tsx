@@ -22,20 +22,16 @@ function History() {
             const txIds: string[] = data.transactions.edges.map((edge: any /* todo: fix type */) => edge.node.id);
 
             const txDatas = await Promise.all(
-                txIds.map(async txId => {
+                txIds.map(txId => new Promise<HistoryItemType>(async resolve => {
                     const txData = await arweave.transactions.getData(txId, { decode: true });
+                    const encrpytedTxData = JSON.parse(await arweaveDecrypt(txData as Uint8Array));
+                    encrpytedTxData.txId = txId;
 
-                    return arweaveDecrypt(txData as Uint8Array);
-                })
+                    resolve(encrpytedTxData);
+                }))
             );
 
-            // todo: find a better way to do this (maybe saving txId when making transaction)
-            setHistory(txDatas.map(txData => {
-                const d = JSON.parse(txData);
-                d.txId = txIds[txDatas.indexOf(txData)];
-
-                return d;
-            }));
+            setHistory(txDatas);
 
             clearTimeout(loadingTimeout);
         } catch (err) {

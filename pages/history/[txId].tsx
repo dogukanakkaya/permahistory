@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { type HistoryItem } from '../../components/history-item';
 import { arweave, arweaveDecrypt, getTransactionsById } from '../../arweave';
 import { Visibility } from '../write';
+import Head from 'next/head';
 
 function SingleHistory() {
     const [item, setItem] = useState<HistoryItem | null>(null);
@@ -37,11 +38,17 @@ function SingleHistory() {
     }, [txId])
 
     return (
-        <div className="min-h-[calc(100vh-theme('spacing.40'))] container my-10">
-            <div className='max-w-none prose dark:prose-invert prose-a:text-blue-600 hover:prose-a:text-blue-500'>
-                {item && <ReactMarkdown>{item.content}</ReactMarkdown>}
+        <>
+            <Head>
+                <title>{item?.title}</title>
+            </Head>
+
+            <div className="min-h-[calc(100vh-theme('spacing.40'))] container my-10">
+                <div className='max-w-none prose dark:prose-invert prose-a:text-blue-600 hover:prose-a:text-blue-500'>
+                    {item && <ReactMarkdown>{item.content}</ReactMarkdown>}
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
