@@ -16,7 +16,6 @@ You can now create public writings and see those in history page.
 
 ## What's left to be done
 - About and FAQ page (static).
-- Private writings and My History page (interactive).
 - Some styling and code refactoring.
 - Option to connect with Arweave Web Wallet as well as ArConnect.
 - Functionality to send messages to future and allow decryption only at certain date. (I'll check Smartweave for this, i don't exactly know how to achieve this in decentralized way.)
