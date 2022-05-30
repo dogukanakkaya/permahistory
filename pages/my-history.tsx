@@ -4,8 +4,10 @@ import HistoryItem, { type HistoryItem as HistoryItemType } from '../components/
 import Head from 'next/head';
 import Loading from '../components/loading';
 import { Visibility } from './write';
+import useArConnect from '../context/useArConnect';
 
 function History() {
+    const { arConnectLoaded } = useArConnect();
     const [loading, setLoading] = useState(false);
     const [history, setHistory] = useState<HistoryItemType[]>([]);
 
@@ -42,17 +44,11 @@ function History() {
         setLoading(false);
     }
 
-    const handleArWalletLoaded = async () => {
-        await window.arweaveWallet.connect(['DECRYPT', 'ACCESS_PUBLIC_KEY']);
-
-        getTransactions();
-    }
-
     useEffect(() => {
-        window.addEventListener('arweaveWalletLoaded', handleArWalletLoaded);
-
-        return () => window.removeEventListener('arweaveWalletLoaded', handleArWalletLoaded);
-    }, [])
+        if (arConnectLoaded) {
+            getTransactions();
+        }
+    }, [arConnectLoaded])
 
     return (
         <>
