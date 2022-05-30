@@ -1,6 +1,3 @@
-import Arweave from 'arweave';
-import config from './config';
-
 export const timeSince = (date: Date) => {
     const seconds = Math.floor(
         ((new Date() as unknown as number) - (date as unknown as number))
@@ -31,9 +28,3 @@ export const timeSince = (date: Date) => {
 
     return `${Math.floor(seconds)} seconds`;
 }
-
-export const arweave = Arweave.init({
-    host: config.ARWEAVE_HOST,
-    port: config.ARWEAVE_PORT,
-    protocol: config.ARWEAVE_PROTOCOL
-});

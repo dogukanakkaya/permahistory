@@ -4,7 +4,7 @@ import { useState } from 'react';
 import TagInput from '../components/tag-input';
 import { Tag } from 'react-tag-input';
 import config from '../config';
-import { arweave } from '../utils';
+import { arweave } from '../arweave';
 
 function Write() {
     const [title, setTitle] = useState('');
@@ -14,8 +14,12 @@ function Write() {
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState<Result | null>(null);
 
-    // todo: return encrypted
-    const arweaveEncrypt = (value: string): string => value;
+    const arweaveEncrypt = (value: string): Promise<Uint8Array> => {
+        return window.arweaveWallet.encrypt(value, {
+            algorithm: 'RSA-OAEP',
+            hash: 'SHA-256'
+        });
+    };
 
     const transact = async ({ visibility }: { visibility: Visibility }) => {
         if (tags.length > 3) {
@@ -37,8 +41,9 @@ function Write() {
                 createdAt: new Date().toISOString(),
                 tags: tags.map(tag => tag.text)
             });
+
             const tx = await arweave.createTransaction({
-                data: visibility === Visibility.Private ? arweaveEncrypt(txData) : txData
+                data: visibility === Visibility.Private ? await arweaveEncrypt(txData) : new TextEncoder().encode(txData)
             });
 
             tx.addTag('App-Name', config.APP_NAME);
@@ -101,7 +106,7 @@ function Write() {
                             {
                                 loading ? 'Please wait...' :
                                     <>
-                                        <button className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 mr-4">
+                                        <button onClick={() => transact({ visibility: Visibility.Private })} className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 mr-4">
                                             Save Privately <i className='bi bi-lock ml-2'></i>
                                         </button>
                                         <button onClick={() => transact({ visibility: Visibility.Public })} className="font-semibold text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:outline-none shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 rounded-lg text-sm px-5 py-2.5">
@@ -126,7 +131,7 @@ function Write() {
     )
 }
 
-enum Visibility {
+export enum Visibility {
     Private = 'private',
     Public = 'public'
 }

@@ -15,14 +15,21 @@ function History() {
         }, 250);
 
         try {
-            const response = await getTransactionsByVisibility({ visibility: Visibility.Public });
+            const response = await getTransactionsByVisibility({ visibility: Visibility.Private });
 
             const { data } = await response.json();
 
             const txIds: string[] = data.transactions.edges.map((edge: any /* todo: fix type */) => edge.node.id);
 
             const txDatas = await Promise.all(
-                txIds.map(txId => arweave.transactions.getData(txId, { decode: true, string: true }))
+                txIds.map(async txId => {
+                    const txData = await arweave.transactions.getData(txId, { decode: true });
+
+                    return window.arweaveWallet.decrypt(txData as Uint8Array, {
+                        algorithm: "RSA-OAEP",
+                        hash: "SHA-256",
+                    });
+                })
             ) as string[];
 
             // todo: find a better way to do this (maybe saving txId when making transaction)
@@ -40,14 +47,22 @@ function History() {
         setLoading(false);
     }
 
-    useEffect(() => {
+    const handleArWalletLoaded = async () => {
+        await window.arweaveWallet.connect(['DECRYPT', 'ACCESS_PUBLIC_KEY']);
+
         getTransactions();
+    }
+
+    useEffect(() => {
+        window.addEventListener('arweaveWalletLoaded', handleArWalletLoaded);
+
+        return () => window.removeEventListener('arweaveWalletLoaded', handleArWalletLoaded);
     }, [])
 
     return (
         <>
             <Head>
-                <title>Permahistory - History</title>
+                <title>Permahistory - My History</title>
                 <meta name="description" content="" />
             </Head>
 
