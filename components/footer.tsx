@@ -1,9 +1,10 @@
-import Image from 'next/image'
+import Image from 'next/image';
+import logo from '../public/logo.png';
 
 function Footer() {
     return (
         <div className='flex items-center justify-center h-20 border-t dark:border-gray-800'>
-            <Image unoptimized src="./logo.png" width={35} height={35} alt="Permahistory" />
+            <Image unoptimized src={logo} width={35} height={35} alt="Permahistory" />
         </div>
     )
 }
