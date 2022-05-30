@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import {
     createContext,
     ReactNode,
@@ -18,17 +19,22 @@ const ArConnectContext = createContext<Context>({} as Context);
 
 export const ArConnectProvider = (props: ContextProps) => {
     const [arConnectLoaded, setArConnectLoaded] = useState(false);
+    const router = useRouter();
 
-    const handleArWalletLoaded = async () => {
-        await window.arweaveWallet.connect(['SIGN_TRANSACTION', 'ENCRYPT', 'DECRYPT', 'ACCESS_PUBLIC_KEY']);
-        setArConnectLoaded(true);
-    }
+    const handleArWalletLoaded = () => setArConnectLoaded(true)
 
     useEffect(() => {
+        if (arConnectLoaded && ['/history', '/my-history', '/history/[txId]', '/write'].includes(router.pathname)) {
+            window.arweaveWallet.connect(['SIGN_TRANSACTION', 'ENCRYPT', 'DECRYPT', 'ACCESS_PUBLIC_KEY']);
+        }
+
         window.addEventListener('arweaveWalletLoaded', handleArWalletLoaded);
 
-        return () => window.removeEventListener('arweaveWalletLoaded', handleArWalletLoaded);
-    }, [])
+        return () => {
+            window.removeEventListener('arweaveWalletLoaded', handleArWalletLoaded);
+            window.arweaveWallet.disconnect();
+        };
+    }, [router.pathname, arConnectLoaded]);
 
     return (
         <ArConnectContext.Provider value={{ arConnectLoaded }}>
