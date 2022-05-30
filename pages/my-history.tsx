@@ -15,9 +15,7 @@ function History() {
         }, 250);
 
         try {
-            const response = await getTransactionsByVisibility({ visibility: Visibility.Private });
-
-            const { data } = await response.json();
+            const { data } = await getTransactionsByVisibility({ visibility: Visibility.Private });
 
             const txIds: string[] = data.transactions.edges.map((edge: any /* todo: fix type */) => edge.node.id);
 

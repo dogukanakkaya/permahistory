@@ -8,8 +8,9 @@ export const arweave = Arweave.init({
     protocol: config.ARWEAVE_PROTOCOL
 });
 
-export const getTransactionsByVisibility = ({ visibility }: { visibility: Visibility }) => {
-    return fetch(`${config.ARWEAVE_URL}/graphql`, {
+// todo: fetch to axios maybe
+export const getTransactionsByVisibility = async ({ visibility }: { visibility: Visibility }) => {
+    const response = await fetch(`${config.ARWEAVE_URL}/graphql`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -37,6 +38,35 @@ export const getTransactionsByVisibility = ({ visibility }: { visibility: Visibi
             `
         })
     });
+
+    return response.json();
+}
+
+export const getTransactionsById = async (id: string) => {
+    const response = await fetch(`${config.ARWEAVE_URL}/graphql`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            query: `
+                query {
+                    transactions(ids: ["${id}"]) {
+                        edges {
+                            node {
+                                tags {
+                                    name
+                                    value
+                                }
+                            }
+                        }
+                    }
+                }
+            `
+        })
+    });
+
+    return response.json();
 }
 
 export const arweaveEncrypt = (value: string): Promise<Uint8Array> => window.arweaveWallet.encrypt(value, config.ARCONNECT_ENCRYPT_OPTIONS);

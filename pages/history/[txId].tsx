@@ -2,13 +2,28 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { type HistoryItem } from '../../components/history-item';
-import { arweave } from '../../utils';
+import { arweave, arweaveDecrypt, getTransactionsById } from '../../arweave';
+import { Visibility } from '../write';
 
 function SingleHistory() {
     const [item, setItem] = useState<HistoryItem | null>(null);
     const router = useRouter();
 
     const { txId } = router.query;
+
+    const getTransaction = async (id: string) => {
+        const { data } = await getTransactionsById(id);
+
+        const visibility = data.transactions.edges[0].node.tags.find((tag: { name: string, value: string }) => tag.name === 'Visibility');
+        if (visibility.value === Visibility.Private) {
+            const txData = await arweave.transactions.getData(id, { decode: true });
+            const decrpytedTxData = await arweaveDecrypt(txData as Uint8Array);
+            setItem(JSON.parse(decrpytedTxData));
+        } else {
+            const txData = await arweave.transactions.getData(id, { decode: true, string: true });
+            setItem(JSON.parse(txData as string));
+        }
+    }
 
     useEffect(() => {
         if (router.isReady) {
@@ -17,7 +32,7 @@ function SingleHistory() {
                 return;
             }
 
-            arweave.transactions.getData(txId, { decode: true, string: true }).then(data => setItem(JSON.parse(data as string)))
+            getTransaction(txId);
         }
     }, [txId])
 
