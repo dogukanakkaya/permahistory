@@ -19,7 +19,7 @@ You can now create public writings and see those in history page.
 - Private writings and My History page (interactive).
 - Some styling and code refactoring.
 - Option to connect with Arweave Web Wallet as well as ArConnect.
-- Functionality to send messages to future and allow encryption only at certain date. (I'll check Smartweave for this, i don't exactly know how to achieve this in decentralized way.)
+- Functionality to send messages to future and allow decryption only at certain date. (I'll check Smartweave for this, i don't exactly know how to achieve this in decentralized way.)
 - Send writings as mails at certain date. (Again i don't exactly know how to achieve this, i'll search.)
 - Pagination for history.
 - Bundling or grouping writings.
