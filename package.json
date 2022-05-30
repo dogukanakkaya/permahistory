@@ -4,11 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "export NODE_ENV=test && next build && next export",
     "start": "next start",
-    "lint": "next lint",
-    "export": "next export",
-    "build:export": "export NODE_ENV=test && next build && next export"
+    "lint": "next lint"
   },
   "dependencies": {
     "@uiw/react-md-editor": "^3.6.0",
