@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { arweave, getTransactionsByVisibility } from '../arweave';
+import { arweave, arweaveDecrypt, getTransactionsByVisibility } from '../arweave';
 import HistoryItem, { type HistoryItem as HistoryItemType } from '../components/history-item';
 import Head from 'next/head';
 import Loading from '../components/loading';
@@ -25,12 +25,9 @@ function History() {
                 txIds.map(async txId => {
                     const txData = await arweave.transactions.getData(txId, { decode: true });
 
-                    return window.arweaveWallet.decrypt(txData as Uint8Array, {
-                        algorithm: "RSA-OAEP",
-                        hash: "SHA-256",
-                    });
+                    return arweaveDecrypt(txData as Uint8Array);
                 })
-            ) as string[];
+            );
 
             // todo: find a better way to do this (maybe saving txId when making transaction)
             setHistory(txDatas.map(txData => {

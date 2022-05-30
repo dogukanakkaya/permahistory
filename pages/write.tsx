@@ -4,7 +4,7 @@ import { useState } from 'react';
 import TagInput from '../components/tag-input';
 import { Tag } from 'react-tag-input';
 import config from '../config';
-import { arweave } from '../arweave';
+import { arweave, arweaveEncrypt } from '../arweave';
 
 function Write() {
     const [title, setTitle] = useState('');
@@ -13,13 +13,6 @@ function Write() {
     const [tags, setTags] = useState<Tag[]>([]);
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState<Result | null>(null);
-
-    const arweaveEncrypt = (value: string): Promise<Uint8Array> => {
-        return window.arweaveWallet.encrypt(value, {
-            algorithm: 'RSA-OAEP',
-            hash: 'SHA-256'
-        });
-    };
 
     const transact = async ({ visibility }: { visibility: Visibility }) => {
         if (tags.length > 3) {

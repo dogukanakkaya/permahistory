@@ -1,5 +1,9 @@
 const config = {
     APP_NAME: 'Permahistory',
+    ARCONNECT_ENCRYPT_OPTIONS: {
+        algorithm: "RSA-OAEP",
+        hash: "SHA-256",
+    },
     ARWEAVE_HOST: '127.0.0.1',
     ARWEAVE_PORT: 1984,
     ARWEAVE_PROTOCOL: 'http',

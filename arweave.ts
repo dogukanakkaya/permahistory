@@ -38,3 +38,6 @@ export const getTransactionsByVisibility = ({ visibility }: { visibility: Visibi
         })
     });
 }
+
+export const arweaveEncrypt = (value: string): Promise<Uint8Array> => window.arweaveWallet.encrypt(value, config.ARCONNECT_ENCRYPT_OPTIONS);
+export const arweaveDecrypt = (value: Uint8Array): Promise<string> => window.arweaveWallet.decrypt(value, config.ARCONNECT_ENCRYPT_OPTIONS);
