@@ -11,6 +11,11 @@ const faq = [
         id: '2',
         title: 'What can i write?',
         content: 'You can write everything, notes, diaries, future thoughts etc.'
+    },
+    {
+        id: '3',
+        title: 'Do i have to pay?',
+        content: 'Not to Permahistory. Nevertheless you have to pay some transaction fees with **AR coin** depends on what you write.'
     }
 ];
 

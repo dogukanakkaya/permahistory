@@ -23,7 +23,7 @@ const Home: NextPage = () => {
             </p>
           </div>
           <div>
-            <Link href="/about"><a className="font-semibold text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:outline-none shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 rounded-lg text-sm px-5 py-2.5 mr-4">Learn Permahistory</a></Link>
+            <Link href="/faq"><a className="font-semibold text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:outline-none shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 rounded-lg text-sm px-5 py-2.5 mr-4">Learn Permahistory</a></Link>
             <a href="https://www.arweave.org/" title="Arweave" target="_blank" rel="noreferrer" className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700">
               Learn Arweave
             </a>
