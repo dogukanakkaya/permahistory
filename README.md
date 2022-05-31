@@ -15,7 +15,7 @@ Home page, history page, writing page stylings are completed. There is still thi
 You can now create public writings and see those in history page.
 
 ## What's left to be done
-- About and FAQ page (static).
+- About page (static).
 - Some styling and code refactoring.
 - Option to connect with Arweave Web Wallet as well as ArConnect.
 - Functionality to send messages to future and allow decryption only at certain date. (I'll check Smartweave for this, i don't exactly know how to achieve this in decentralized way.)
