@@ -11,7 +11,6 @@ if (process.env.NODE_ENV === 'static_export') {
     nextConfig.basePath = '/out';
 } else if (process.env.NODE_ENV === 'production') {
     nextConfig.assetPrefix = '.';
-    nextConfig.basePath = '/out';
 }
 
 module.exports = {
