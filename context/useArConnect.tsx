@@ -24,9 +24,9 @@ export const ArConnectProvider = (props: ContextProps) => {
     const handleArWalletLoaded = () => setArConnectLoaded(true)
 
     useEffect(() => {
-        if (arConnectLoaded && ['/history', '/my-history', '/history/[txId]', '/write'].includes(router.pathname)) {
-            window.arweaveWallet.connect(['SIGN_TRANSACTION', 'ENCRYPT', 'DECRYPT', 'ACCESS_PUBLIC_KEY']);
-        }
+        // if (arConnectLoaded && ['/history', '/my-history', '/history/[txId]', '/write'].includes(router.pathname)) {
+        //     window.arweaveWallet.connect(['SIGN_TRANSACTION', 'ENCRYPT', 'DECRYPT', 'ACCESS_PUBLIC_KEY']);
+        // }
 
         window.addEventListener('arweaveWalletLoaded', handleArWalletLoaded);
 

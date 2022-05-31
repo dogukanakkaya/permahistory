@@ -35,7 +35,7 @@ function SingleHistory() {
 
             getTransaction(txId);
         }
-    }, [txId])
+    }, [txId, router])
 
     return (
         <>
