@@ -23,3 +23,12 @@ body {
 [type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select {
     @apply focus:border-red-500 focus:ring-red-500 dark:text-white dark:bg-black;
 }
+
+summary::-webkit-details-marker, summary::marker {
+    display: none;
+    content: "";
+}
+
+details[open] summary i{
+    transform: rotate(180deg);
+}

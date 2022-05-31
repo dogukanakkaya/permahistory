@@ -32,7 +32,7 @@ export const ArConnectProvider = (props: ContextProps) => {
 
         return () => {
             window.removeEventListener('arweaveWalletLoaded', handleArWalletLoaded);
-            window.arweaveWallet.disconnect();
+            window.arweaveWallet?.disconnect();
         };
     }, [router.pathname, arConnectLoaded]);
 

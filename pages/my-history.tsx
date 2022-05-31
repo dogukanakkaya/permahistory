@@ -68,7 +68,6 @@ function History() {
                     </div>
                 )
             }
-
         </>
     )
 }
