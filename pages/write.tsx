@@ -2,7 +2,6 @@ import Head from 'next/head';
 import Editor from '../components/editor';
 import { useState } from 'react';
 import TagInput from '../components/tag-input';
-import { Tag } from 'react-tag-input';
 import config from '../config';
 import { arweave, arweaveEncrypt } from '../arweave';
 
@@ -10,13 +9,13 @@ function Write() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [content, setContent] = useState('');
-    const [tags, setTags] = useState<Tag[]>([]);
+    const [tags, setTags] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState<Result | null>(null);
 
     const transact = async ({ visibility }: { visibility: Visibility }) => {
         if (tags.length > 3) {
-            alert('You can add up to 5 tags.');
+            alert('You can add up to 3 tags.');
             return;
         }
 
@@ -25,6 +24,7 @@ function Write() {
             return;
         }
 
+        setResult(null);
         setLoading(true);
         try {
             const txData = JSON.stringify({
@@ -32,7 +32,7 @@ function Write() {
                 description,
                 content,
                 createdAt: new Date().toISOString(),
-                tags: tags.map(tag => tag.text)
+                tags
             });
 
             const tx = await arweave.createTransaction({
@@ -43,7 +43,7 @@ function Write() {
             tx.addTag('Visibility', visibility);
             tx.addTag('Content-Type', 'text/plain');
             if (tags.length) {
-                tags.forEach(tag => tx.addTag('topics', tag.text));
+                tags.forEach(tag => tx.addTag('topics', tag));
             }
 
             await arweave.transactions.sign(tx);

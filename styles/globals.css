@@ -24,6 +24,19 @@ body {
     @apply focus:border-red-500 focus:ring-red-500 dark:text-white dark:bg-black;
 }
 
+.rti--container {
+    @apply !flex-wrap-reverse;
+}
+.rti--input {
+    @apply !w-full;
+}
+.rti--tag {
+    @apply !px-2 py-1 mr-2 mt-2 !inline-block text-sm !bg-gray-200 dark:!bg-gray-700;
+}
+.rti--tag button {
+    @apply ml-2;
+}
+
 summary::-webkit-details-marker, summary::marker {
     display: none;
     content: "";
