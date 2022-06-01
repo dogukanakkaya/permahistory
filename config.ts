@@ -1,5 +1,5 @@
 const config = {
-    APP_NAME: 'Permahistory',
+    APP_NAME: 'Permahistory.v0-dev',
     ARCONNECT_ENCRYPT_OPTIONS: {
         algorithm: "RSA-OAEP",
         hash: "SHA-256",

@@ -17,7 +17,8 @@ interface ContextProps {
     children: ReactNode;
 }
 
-const NEEDED_PERMISSIONS: PermissionType[] = ['SIGN_TRANSACTION', 'ENCRYPT', 'DECRYPT', 'ACCESS_PUBLIC_KEY'];
+// @ts-ignore arweave module should upgrade arconnect)
+const NEEDED_PERMISSIONS: PermissionType[] = ['SIGN_TRANSACTION', 'ENCRYPT', 'DECRYPT', 'ACCESS_PUBLIC_KEY', 'DISPATCH'];
 
 const ArConnectContext = createContext<Context>({} as Context);
 
@@ -33,9 +34,11 @@ export const ArConnectProvider = (props: ContextProps) => {
         (async () => {
             if (arConnectLoaded && ['/history', '/my-history', '/history/[txId]', '/write'].includes(router.pathname)) {
                 const permissions = await window.arweaveWallet.getPermissions();
+                // @ts-ignore arweave module should upgrade arconnect)
                 const missingPermissions = NEEDED_PERMISSIONS.filter(permission => !permissions.includes(permission))
 
                 if (missingPermissions.length > 0) {
+                    // @ts-ignore arweave module should upgrade arconnect)
                     window.arweaveWallet.connect(NEEDED_PERMISSIONS, { name: config.APP_NAME });
                 }
             }
