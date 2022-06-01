@@ -46,6 +46,9 @@ function Write() {
                 tags.forEach(tag => tx.addTag('topics', tag));
             }
 
+            // const result = await window.arweaveWallet.dispatch(tx);
+            // console.log(result);
+
             await arweave.transactions.sign(tx);
 
             const { status } = await arweave.transactions.post(tx);
