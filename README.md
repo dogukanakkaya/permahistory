@@ -15,7 +15,6 @@ Home page, history page, writing page stylings are completed. There is still thi
 You can now create public writings and see those in history page.
 
 ## What's left to be done
-- About page (static).
 - Some styling and code refactoring.
 - Option to connect with Arweave Web Wallet as well as ArConnect.
 - Functionality to send messages to future and allow decryption only at certain date. (I'll check Smartweave for this, i don't exactly know how to achieve this in decentralized way.)
@@ -23,5 +22,6 @@ You can now create public writings and see those in history page.
 - Pagination for history.
 - Bundling or grouping writings.
 - Uploading certificates and other important documents that people have.
+- Paying transaction fees with different coins or tokens (ETH, LINK etc.) that can be swappable to AR, or maybe without swapping. (If it's possible)
 
 <img width="1805" alt="Screen Shot 2022-05-29 at 22 34 51" src="https://user-images.githubusercontent.com/51231605/170889914-c1799cbe-823d-42ba-82f0-ebb69134e2d3.png">
