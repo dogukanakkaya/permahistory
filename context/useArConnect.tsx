@@ -44,10 +44,7 @@ export const ArConnectProvider = (props: ContextProps) => {
             }
         })();
 
-        return () => {
-            window.removeEventListener('arweaveWalletLoaded', handleArWalletLoaded);
-            window.arweaveWallet?.disconnect();
-        };
+        return () => window.removeEventListener('arweaveWalletLoaded', handleArWalletLoaded);
     }, [router.pathname, arConnectLoaded]);
 
     return (
