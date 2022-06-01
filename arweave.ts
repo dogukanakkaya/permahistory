@@ -21,7 +21,7 @@ export const getTransactionsByVisibility = async ({ visibility }: { visibility: 
                     transactions(tags: [
                         {
                             name: "App-Name",
-                            values: ["Permahistory"]
+                            values: ["${config.APP_NAME}"]
                         }
                         {
                             name: "Visibility",
