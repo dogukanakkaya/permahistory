@@ -9,19 +9,13 @@ Purpose of this project is to create permanent notes, diaries, future thoughts e
 
 Everything you write will be permanently stored on **Arweave Blockchain**, as well as this website (will be deployed to blockchain).
 
-## What has been done so far?
-Home page, history page, writing page stylings are completed. There is still things to do for both functionality and styling.
-
-You can now create public writings and see those in history page.
-
-## What's left to be done
-- Some styling and code refactoring.
-- Option to connect with Arweave Web Wallet as well as ArConnect.
-- Functionality to send messages to future and allow decryption only at certain date. (I'll check Smartweave for this, i don't exactly know how to achieve this in decentralized way.)
-- Send writings as mails at certain date. (Again i don't exactly know how to achieve this, i'll search.)
-- Pagination for history.
-- Bundling or grouping writings.
-- Uploading certificates and other important documents that people have.
-- Paying transaction fees with different coins or tokens (ETH, LINK etc.) that can be swappable to AR, or maybe without swapping. (If it's possible)
+## To Do
+- [ ] Option to connect with Arweave Web Wallet as well as ArConnect.
+- [ ] Functionality to send messages to future and allow decryption only at certain date. (I'll check Smartweave for this, i don't exactly know how to achieve this in decentralized way.)
+- [ ] Send writings as mails at certain date. (Again i don't exactly know how to achieve this, i'll search.)
+- [ ] Pagination for history.
+- [ ] Bundling or grouping writings.
+- [ ] Uploading certificates and other important documents that people have.
+- [ ] Paying transaction fees with different coins or tokens (ETH, LINK etc.) that can be swappable to AR, or maybe without swapping. (If it's possible)
 
 <img width="1440" alt="Screen Shot 2022-06-03 at 00 08 22" src="https://user-images.githubusercontent.com/51231605/171738606-e285bbd5-d341-438d-8790-c5ecf81c2cab.png">
