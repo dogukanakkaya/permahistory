@@ -24,4 +24,4 @@ You can now create public writings and see those in history page.
 - Uploading certificates and other important documents that people have.
 - Paying transaction fees with different coins or tokens (ETH, LINK etc.) that can be swappable to AR, or maybe without swapping. (If it's possible)
 
-<img width="1805" alt="Screen Shot 2022-05-29 at 22 34 51" src="https://user-images.githubusercontent.com/51231605/170889914-c1799cbe-823d-42ba-82f0-ebb69134e2d3.png">
+<img width="1440" alt="Screen Shot 2022-06-03 at 00 08 22" src="https://user-images.githubusercontent.com/51231605/171738606-e285bbd5-d341-438d-8790-c5ecf81c2cab.png">
