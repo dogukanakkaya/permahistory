@@ -2,7 +2,6 @@ const removeImports = require('next-remove-imports')();
 
 const nextConfig = {
     reactStrictMode: true,
-    images: { loader: 'custom' },
     trailingSlash: true
 };
 
