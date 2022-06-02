@@ -6,7 +6,7 @@ function HistoryItem({ item }: { item: HistoryItem }) {
         <Link href={`/history/${item.txId}`}>
             <div className='rounded-lg p-6 shadow cursor-pointer bg-white bg-hover:bg-gray-100 dark:bg-[#010102] hover:dark:bg-black hover:dark:shadow-xl'>
                 <div className="text-gray-400">
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between items-center'>
                         <h2 className='text-gray-600 dark:text-gray-100 text-xl font-semibold'>{item.title}</h2>
                         <ul className='flex'>
                             {

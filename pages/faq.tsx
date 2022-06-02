@@ -3,8 +3,13 @@ import ReactMarkdown from 'react-markdown';
 
 const faq = [
     {
+        id: '4',
+        title: 'How to use Permahistory?',
+        content: "For now you must use **[ArConnect](https://www.arconnect.io/)** wallet extension. I hope soon you will be able to pay transaction fees with ETH or other supported tokens."
+    },
+    {
         id: '1',
-        title: 'How it works?',
+        title: 'How Permahistory works?',
         content: "**Permahistory** runs on **Arweave Blockchain**, everything you write will be permanently/forever stored on **Arweave**."
     },
     {
