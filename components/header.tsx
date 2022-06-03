@@ -13,19 +13,19 @@ function Header() {
     }
 
     return (
-        <header className='h-20 bg-white dark:bg-[#010102] shadow'>
+        <header className='h-20 dark:bg-[#010102] shadow'>
             <div className="container flex items-center justify-between h-full">
                 <div className='relative z-50 mx-5 sm:mx-0'>
                     <Link href="/">
-                        <a className="hidden dark:block"><img src={logoDark.src} className='w-60 sm:w-96 cursor-pointer' alt="Permahistory" /></a>
+                        <a className="hidden dark:block"><img src={logoDark.src} className='w-48 sm:w-96 cursor-pointer' alt="Permahistory" /></a>
                     </Link>
                     <Link href="/">
-                        <a className="block dark:hidden"><img src={logoWhite.src} className='w-60 sm:w-96 cursor-pointer' alt="Permahistory" /></a>
+                        <a className="block dark:hidden"><img src={logoWhite.src} className='w-48 sm:w-96 cursor-pointer' alt="Permahistory" /></a>
                     </Link>
                 </div>
                 <nav className={`fixed z-40 inset-0 h-full bg-black bg-opacity-25 w-full sm:static sm:block ${!navOpen ? 'hidden' : ''}`} onClick={handleNavClick}>
                     <div className="h-full overflow-y-auto sm:flex sm:justify-end sm:items-center overflow-hidden bg-white dark:bg-[#010102] mr-36 sm:mr-0">
-                        <ul className='mx-5 mt-20 sm:mt-0 sm:mx-0 flex flex-col sm:flex-row items-center'>
+                        <ul className='mx-5 mt-20 sm:mt-0 sm:mx-0 flex flex-col sm:flex-row items-start'>
                             <li><Link href="/history"><a className="nav-item font-semibold">History</a></Link></li>
                             <li className='relative'>
                                 <Link href="/my-history">
