@@ -4,6 +4,7 @@ import { useState } from 'react';
 import TagInput from '../components/tag-input';
 import config from '../config';
 import { arweave, arweaveEncrypt } from '../arweave';
+import Loading from '../components/loading';
 
 function Write() {
     const [title, setTitle] = useState('');
@@ -98,9 +99,9 @@ function Write() {
                             <Editor data={content} setData={setContent} className="mb-3 dark:invert" />
                             <TagInput tags={tags} setTags={setTags} className="mb-3" />
                         </form>
-                        <div className="text-right mt-5">
+                        <div className="flex justify-end mt-5">
                             {
-                                loading ? 'Please wait...' :
+                                loading ? <Loading /> :
                                     <>
                                         <button onClick={() => transact({ visibility: Visibility.Private })} className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 mr-4">
                                             Save Privately <i className='bi bi-lock ml-2'></i>
