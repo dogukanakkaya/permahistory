@@ -33,7 +33,3 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-
-# arweave
-out-*
-wallet-keys.json
