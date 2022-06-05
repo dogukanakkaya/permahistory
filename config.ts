@@ -1,7 +1,7 @@
 import logo from './public/logo-transparent-text-dark.svg';
 
 const config = {
-    APP_NAME: 'Permahistory.v2-test',
+    APP_NAME: 'Permahistory.v2-dev',
     APP_LOGO: logo.src,
     ARCONNECT_ENCRYPT_OPTIONS: {
         algorithm: "RSA-OAEP",
