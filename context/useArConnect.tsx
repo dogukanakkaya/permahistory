@@ -18,7 +18,7 @@ interface ContextProps {
     children: ReactNode;
 }
 
-const NEEDED_PERMISSIONS: PermissionType[] = ['SIGN_TRANSACTION', 'ENCRYPT', 'DECRYPT', 'ACCESS_PUBLIC_KEY', 'DISPATCH'];
+const NEEDED_PERMISSIONS: PermissionType[] = ['SIGN_TRANSACTION', 'ENCRYPT', 'DECRYPT', 'ACCESS_PUBLIC_KEY', /*'DISPATCH'*/];
 
 const ArConnectContext = createContext<Context>({} as Context);
 
@@ -34,13 +34,15 @@ export const ArConnectProvider = (props: ContextProps) => {
             logo: config.APP_LOGO
         });
 
-        wallet.setUrl('arweave.app');
+        wallet.setUrl('https://www.arweave.app/');
+
         await wallet.connect();
     }
 
     const handleWalletConnection = async () => {
-        if (arConnectLoaded && window.arweaveWallet) {
-            if (['/my-history', '/history/[txId]', '/write'].includes(router.pathname)) {
+        if (['/my-history', '/history/[txId]', '/write'].includes(router.pathname)) {
+            if (arConnectLoaded && window.arweaveWallet) {
+
                 const permissions = await window.arweaveWallet.getPermissions();
                 const missingPermissions = NEEDED_PERMISSIONS.filter(permission => !permissions.includes(permission));
 
@@ -54,9 +56,9 @@ export const ArConnectProvider = (props: ContextProps) => {
                         connectWithArweaveWebWallet();
                     }
                 }
+            } else {
+                connectWithArweaveWebWallet();
             }
-        } else {
-            connectWithArweaveWebWallet();
         }
     }
 
