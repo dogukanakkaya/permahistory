@@ -15,7 +15,7 @@ function Editor({ data, setData, ...otherProps }: Props) {
         <div {...otherProps}>
             <MDEditor
                 value={data}
-                onChange={(value) => value ? setData(value) : null}
+                onChange={value => value ? setData(value) : setData('')}
                 previewOptions={{
                     rehypePlugins: [[rehypeSanitize]],
                 }}
