@@ -17,6 +17,7 @@ Everything you write will be permanently stored on **Arweave Blockchain**, as we
 - [ ] Pagination for history.
 - [ ] Bundling or grouping writings.
 - [ ] Writing testaments.
+- [ ] Search, Like and Save feature.
 - [ ] Uploading certificates and other important documents that people have.
 - [ ] Paying transaction fees with different coins or tokens (ETH, LINK etc.) that can be swappable to AR, or maybe without swapping. (If it's possible)
 
