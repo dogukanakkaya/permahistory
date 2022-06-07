@@ -40,7 +40,7 @@ export const ArConnectProvider = (props: ContextProps) => {
     }
 
     const handleWalletConnection = async () => {
-        if (['/my-history', '/history/[txId]', '/write'].includes(router.pathname)) {
+        if (['/my-history', /*'/history/[txId]'*/, '/write'].includes(router.pathname)) {
             if (arConnectLoaded && window.arweaveWallet) {
                 const permissions = await window.arweaveWallet.getPermissions();
                 const missingPermissions = NEEDED_PERMISSIONS.filter(permission => !permissions.includes(permission));
