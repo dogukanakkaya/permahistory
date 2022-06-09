@@ -1,5 +1,5 @@
 # Permahistory
-
+:exclamation: LEFT AS UNFINISHED
 
 ## Purpose
 Purpose of this project is to create permanent notes, diaries, future thoughts etc.
