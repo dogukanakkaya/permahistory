@@ -3,9 +3,11 @@ import TagInput from '@/components/tag-input';
 import { APP_NAME } from '@/config';
 import useArConnect from '@/context/useArConnect';
 import { contract } from '@/warp/client';
+import { HistoryItem } from '@/zod';
 import { useState } from 'preact/hooks';
+import { z } from 'zod';
 
-function Write() {
+export default function Write() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [content, setContent] = useState('');
@@ -15,26 +17,15 @@ function Write() {
     const { arConnectLoaded, getPublicKey } = useArConnect();
 
     async function transact() {
-        if (tags.length > 3) {
-            alert('You can add up to 3 tags.');
-            return;
-        }
-
-        if (!title || !content) {
-            alert('You must fill title and content.');
-            return;
-        }
-
         setResult(null);
         setLoading(true);
         try {
+            const history = await HistoryItem.parseAsync({ title, description, content, tags });
+
             const result = await contract.writeInteraction({
                 function: "addHistoryItem",
                 history: {
-                    title,
-                    description,
-                    content,
-                    tags,
+                    ...history,
                     createdBy: await getPublicKey(),
                     createdAt: new Date().toISOString()
                 },
@@ -53,7 +44,12 @@ function Write() {
                 setResult(null);
             }, 5000);
         } catch (err) {
-            setResult({ status: false, message: 'Transaction failed for a reason.' });
+            if (err instanceof z.ZodError) {
+                setResult({ status: false, message: err.issues[0].message });
+            } else {
+                setResult({ status: false, message: 'Transaction failed for a reason.' });
+            }
+
             console.log(err);
         }
 
@@ -116,14 +112,7 @@ function Write() {
     )
 }
 
-export enum Visibility {
-    Private = 'private',
-    Public = 'public'
-}
-
 interface Result {
     status: boolean;
     message: string;
 }
-
-export default Write

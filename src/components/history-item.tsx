@@ -1,10 +1,11 @@
 import { Link } from 'preact-router';
 import { timeSince } from '@/utils';
+import { HistoryItemType } from '@/zod';
 
-function HistoryItem({ item }: { item: HistoryItem }) {
+export default function HistoryItem({ item }: { item: HistoryItemType }) {
     return (
         <Link href={`/history/${item.id}`}>
-            <div className='rounded-lg p-6 shadow cursor-pointer bg-white bg-hover:bg-gray-100 dark:bg-[#010102] hover:dark:bg-black hover:dark:shadow-xl'>
+            <div className='h-36 rounded-lg p-6 shadow cursor-pointer bg-white bg-hover:bg-gray-100 dark:bg-[#010102] hover:dark:bg-black hover:dark:shadow-xl'>
                 <div className="text-gray-400">
                     <div className='flex justify-between items-center'>
                         <h2 className='text-gray-600 dark:text-gray-100 text-xl font-semibold'>{item.title}</h2>
@@ -21,14 +22,3 @@ function HistoryItem({ item }: { item: HistoryItem }) {
         </Link>
     )
 }
-
-export interface HistoryItem {
-    title: string;
-    description?: string;
-    content: string;
-    createdAt: Date;
-    tags: string[];
-    id: string | number;
-}
-
-export default HistoryItem

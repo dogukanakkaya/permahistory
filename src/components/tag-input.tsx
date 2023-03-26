@@ -1,6 +1,6 @@
 import { TagsInput } from "react-tag-input-component";
 
-function TagInput({ tags, setTags, ...otherProps }: Props) {
+export default function TagInput({ tags, setTags, ...otherProps }: Props) {
     return (
         <div {...otherProps}>
             <TagsInput
@@ -24,5 +24,3 @@ interface Props {
     setTags: (value: string[]) => void;
     [key: string]: any;
 }
-
-export default TagInput;

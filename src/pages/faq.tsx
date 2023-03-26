@@ -23,7 +23,7 @@ const faq = [
     }
 ];
 
-function Faq() {
+export default function Faq() {
     return (
         <div className="min-h-[calc(100vh-theme('spacing.40'))] container flex flex-col items-center my-10">
             {
@@ -39,5 +39,3 @@ function Faq() {
         </div>
     )
 }
-
-export default Faq

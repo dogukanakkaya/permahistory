@@ -1,7 +1,7 @@
 import logoDark from '@/assets/logo-transparent-text-white.svg';
 import logoWhite from '@/assets/logo-transparent-text-dark.svg';
 
-function Footer() {
+export default function Footer() {
     return (
         <div className='flex items-center justify-center h-20 border-t dark:border-gray-800'>
             <div className="hidden dark:block">
@@ -13,5 +13,3 @@ function Footer() {
         </div>
     )
 }
-
-export default Footer

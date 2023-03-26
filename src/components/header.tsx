@@ -3,7 +3,7 @@ import { Link } from 'preact-router';
 import logoDark from '@/assets/logo-transparent-text-white.svg';
 import logoWhite from '@/assets/logo-transparent-text-dark.svg';
 
-function Header() {
+export default function Header() {
     const [navOpen, setNavOpen] = useState(false);
 
     const handleNavClick = (e: MouseEvent) => {
@@ -48,5 +48,3 @@ function Header() {
         </header >
     )
 }
-
-export default Header

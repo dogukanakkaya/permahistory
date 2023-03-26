@@ -15,7 +15,8 @@
     "preact-router": "^4.1.0",
     "react-markdown": "^8.0.6",
     "react-tag-input-component": "^2.0.2",
-    "typewriter-effect": "^2.19.0"
+    "typewriter-effect": "^2.19.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",

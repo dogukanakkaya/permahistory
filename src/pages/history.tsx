@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
-import HistoryItem, { type HistoryItem as HistoryItemType } from '@/components/history-item';
+import HistoryItem from '@/components/history-item';
 import Loading from '@/components/loading';
 import { contract } from '@/warp/client';
 import { Link, useRouter } from 'preact-router';
 import useArConnect from '@/context/useArConnect';
+import { HistoryItemType, WriteRouteParameters } from '@/zod';
 
 const PER_PAGE = 14;
 
-function History() {
+export default function History() {
     const [loading, setLoading] = useState(false);
     const [history, setHistory] = useState<HistoryItemType[]>([]);
     const [total, setTotal] = useState<number>(0);
     const { arConnectLoaded, getPublicKey } = useArConnect();
     const router = useRouter();
-    const myHistory = router[0].matches?.my || false;
-    const page = parseInt(router[0].matches?.page || '1');
+    const { myHistory, page } = WriteRouteParameters.parse(router[0].matches);
 
     const getTransactions = async () => {
         if (myHistory && !arConnectLoaded) return;
@@ -85,5 +85,3 @@ function History() {
         </>
     )
 }
-
-export default History

@@ -1,10 +1,10 @@
-import { type HistoryItem as HistoryItemType } from '@/components/history-item';
 import { contract } from '@/warp/client';
+import { HistoryItemType } from '@/zod';
 import { useRouter } from 'preact-router';
 import { useEffect, useState } from 'preact/hooks';
 import ReactMarkdown from 'react-markdown';
 
-function HistoryById() {
+export default function HistoryById() {
     const [loading, setLoading] = useState(false);
     const [item, setItem] = useState<HistoryItemType | null>(null);
     const router = useRouter();
@@ -42,5 +42,3 @@ function HistoryById() {
         </div>
     )
 }
-
-export default HistoryById;

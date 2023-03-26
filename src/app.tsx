@@ -11,8 +11,8 @@ import HistoryById from './pages/history-by-id'
 export function App() {
   return (
     <>
-      <Header />
       <ArConnectProvider>
+        <Header />
         <Router>
           <Home path="/" />
           <History path="/history" />
@@ -20,8 +20,8 @@ export function App() {
           <Faq path="/faq" />
           <Write path="/write" />
         </Router>
+        <Footer />
       </ArConnectProvider>
-      <Footer />
     </>
   )
 }
