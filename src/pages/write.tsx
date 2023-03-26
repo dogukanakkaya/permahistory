@@ -23,7 +23,7 @@ export default function Write() {
             const history = await HistoryItem.parseAsync({ title, description, content, tags });
 
             const result = await contract.writeInteraction({
-                function: "addHistoryItem",
+                function: 'addHistoryItem',
                 history: {
                     ...history,
                     createdBy: await getPublicKey(),

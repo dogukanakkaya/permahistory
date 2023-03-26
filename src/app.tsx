@@ -7,10 +7,11 @@ import Write from './pages/write'
 import { ArConnectProvider } from './context/useArConnect'
 import History from './pages/history'
 import HistoryById from './pages/history-by-id'
+import ErrorBoundary from './components/error-boundary';
 
 export function App() {
   return (
-    <>
+    <ErrorBoundary>
       <ArConnectProvider>
         <Header />
         <Router>
@@ -22,6 +23,6 @@ export function App() {
         </Router>
         <Footer />
       </ArConnectProvider>
-    </>
+    </ErrorBoundary>
   )
 }
