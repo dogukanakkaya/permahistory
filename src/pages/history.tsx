@@ -1,21 +1,46 @@
 import { useEffect, useState } from 'react';
-import HistoryItem, { type HistoryItem as HistoryItemType } from '../components/history-item';
-import Loading from '../components/loading';
+import HistoryItem, { type HistoryItem as HistoryItemType } from '@/components/history-item';
+import Loading from '@/components/loading';
 import { contract } from '@/warp/client';
+import { Link, useRouter } from 'preact-router';
+import useArConnect from '@/context/useArConnect';
+
+const PER_PAGE = 14;
 
 function History() {
     const [loading, setLoading] = useState(false);
     const [history, setHistory] = useState<HistoryItemType[]>([]);
+    const [total, setTotal] = useState<number>(0);
+    const { arConnectLoaded, getPublicKey } = useArConnect();
+    const router = useRouter();
+    const myHistory = router[0].matches?.my || false;
+    const page = parseInt(router[0].matches?.page || '1');
 
     const getTransactions = async () => {
+        if (myHistory && !arConnectLoaded) return;
+
         const loadingTimeout = setTimeout(() => {
             setLoading(true);
         }, 500);
 
         try {
-            const { cachedValue } = await contract.readState();
-            const state = cachedValue.state as { history: HistoryItemType[], [key: string]: any };
-            setHistory(state.history)
+            const { result }: { result: { history: HistoryItemType[], total: number } } = await contract.viewState({
+                function: 'getHistory',
+                query: {
+                    orderBy: {
+                        field: 'id',
+                        direction: 'desc'
+                    },
+                    start: ((page - 1) * PER_PAGE).toString(),
+                    end: (page * PER_PAGE).toString(),
+                    filterBy: {
+                        address: myHistory ? await getPublicKey() : undefined
+                    }
+                }
+            });
+
+            setHistory(result.history);
+            setTotal(result.total);
 
             clearTimeout(loadingTimeout);
         } catch (err) {
@@ -26,7 +51,7 @@ function History() {
 
     useEffect(() => {
         getTransactions();
-    }, [])
+    }, [myHistory, page, getPublicKey])
 
     return (
         <>
@@ -41,6 +66,18 @@ function History() {
                             {
                                 history.map((h, i) => <HistoryItem key={i} item={h} />)
                             }
+                        </div>
+                        <div className="flex justify-between items-center mt-8">
+                            <ul className="flex gap-4">
+                                {
+                                    [...Array(Math.ceil(total / PER_PAGE)).keys()].map((i) => (
+                                        <li>
+                                            <Link href={`${router[0].path}?page=${i + 1}${myHistory ? '&my=1' : ''}`} className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-800">{i + 1}</Link>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                            <span>Showing {(page - 1) * PER_PAGE} - {page * PER_PAGE} of {total}</span>
                         </div>
                     </div>
                 )

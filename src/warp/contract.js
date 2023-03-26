@@ -16,7 +16,7 @@ class HistoryContract {
         }
 
         const item = {
-            id: this.state.history.length, // change this later
+            id: this.state.id++,
             title,
             description,
             content,
@@ -30,16 +30,40 @@ class HistoryContract {
         return { state: this.state };
     }
 
-    getMyHistory() {
-        const { address } = this.action.input.query;
+    getHistory() {
+        const query = this.action.input.query;
 
-        if (!address) {
-            throw new Error('Invalid input: address required to query history.');
+        let history = [...this.state.history];
+
+        if (query.filterBy?.address) {
+            history = history.filter(item => item.createdBy === query.filterBy.address);
         }
 
-        const result = this.state.history.filter(item => item.createdBy === address);
+        if (query.orderBy) {
+            const { field, direction } = query.orderBy;
 
-        return { result };
+            history = history.sort((a, b) => {
+                if (a[field] < b[field]) {
+                    return direction === 'asc' ? -1 : 1;
+                }
+                if (a[field] > b[field]) {
+                    return direction === 'asc' ? 1 : -1;
+                }
+
+                return 0;
+            });
+        }
+
+        if (query.start && query.end) {
+            history = history.slice(query.start, query.end);
+        }
+
+        return {
+            result: {
+                history,
+                total: this.state.history.length
+            }
+        };
     }
 }
 
@@ -48,8 +72,8 @@ export function handle(state, action) {
 
     if (action.input.function === 'addHistoryItem') {
         return contract.addHistoryItem();
-    } else if (action.input.function === 'getMyHistory') {
-        return contract.getMyHistory();
+    } else if (action.input.function === 'getHistory') {
+        return contract.getHistory();
     }
 
     throw new Error('Invalid function.');

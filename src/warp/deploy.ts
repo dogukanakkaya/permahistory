@@ -15,7 +15,7 @@ const warp = WarpFactory.forMainnet().use(new DeployPlugin());
 
     const { contractTxId } = await warp.deploy({
         wallet: new ArweaveSigner(keyfile),
-        initState: JSON.stringify({ history: [] }),
+        initState: JSON.stringify({ history: [], id: 1 }),
         src: contractSrc,
     });
 

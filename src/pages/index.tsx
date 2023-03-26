@@ -1,5 +1,5 @@
 import Typewriter from 'typewriter-effect';
-import { Link } from 'preact-router/match';
+import { Link } from 'preact-router';
 
 export default function Home() {
     return (
