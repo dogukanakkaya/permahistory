@@ -1,8 +1,10 @@
 import { contract } from '@/warp-client';
-import { HistoryItemType } from '@/zod';
+import { HistoryItemType, HistoryItemTypeEncoded } from '@/zod';
 import { useRouter } from 'preact-router';
 import { useEffect, useState } from 'preact/hooks';
 import ReactMarkdown from 'react-markdown';
+import { Visibility } from './write';
+import { arweaveDecrypt } from '@/utils';
 
 export default function HistoryById() {
     const [loading, setLoading] = useState(false);
@@ -16,12 +18,17 @@ export default function HistoryById() {
         }, 500);
 
         try {
-            const { result }: { result: { item: HistoryItemType } } = await contract.viewState({
+            const { result }: { result: { item: HistoryItemTypeEncoded } } = await contract.viewState({
                 function: 'getHistoryById',
                 query: { id }
             });
 
-            setItem(result.item);
+            const content = Uint8Array.from(Object.values(result.item.content));
+
+            setItem({
+                ...result.item,
+                content: result.item.visibility === Visibility.Public ? new TextDecoder().decode(content) : await arweaveDecrypt(content)
+            });
 
             clearTimeout(loadingTimeout);
         } catch (err) {

@@ -19,5 +19,5 @@ const warp = WarpFactory.forMainnet().use(new DeployPlugin());
         src: contractSrc,
     });
 
-    fs.writeFileSync(path.join(__dirname, './transaction.json'), `export const contractTxId = '${contractTxId}';`);
+    fs.writeFileSync(path.join(__dirname, './transaction.ts'), `export const contractTxId = '${contractTxId}';`);
 }().catch(console.log);

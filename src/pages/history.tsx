@@ -5,6 +5,7 @@ import { contract } from '@/warp-client';
 import { Link, useRouter } from 'preact-router';
 import useArConnect from '@/context/useArConnect';
 import { HistoryItemType, WriteRouteParameters } from '@/zod';
+import { Visibility } from './write';
 
 const PER_PAGE = 14;
 
@@ -14,7 +15,7 @@ export default function History() {
     const [total, setTotal] = useState<number>(0);
     const { arConnectLoaded, getPublicKey } = useArConnect();
     const router = useRouter();
-    const { myHistory, page } = WriteRouteParameters.parse(router[0].matches);
+    const { my: myHistory, page } = WriteRouteParameters.parse(router[0].matches);
 
     const getTransactions = async () => {
         if (myHistory && !arConnectLoaded) return;
@@ -34,7 +35,8 @@ export default function History() {
                     start: ((page - 1) * PER_PAGE).toString(),
                     end: (page * PER_PAGE).toString(),
                     filterBy: {
-                        address: myHistory ? await getPublicKey() : undefined
+                        address: myHistory ? await getPublicKey() : undefined,
+                        visibility: myHistory ? [Visibility.Private, Visibility.Public] : [Visibility.Public]
                     }
                 }
             });
@@ -74,12 +76,12 @@ export default function History() {
                                 {
                                     [...Array(Math.ceil(total / PER_PAGE)).keys()].map((i) => (
                                         <li>
-                                            <Link href={`${router[0].path}?page=${i + 1}${myHistory ? '&my=1' : ''}`} className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-800">{i + 1}</Link>
+                                            <Link href={`${router[0].path}?page=${i + 1}${myHistory ? '&my=1' : ''}`} className="px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900">{i + 1}</Link>
                                         </li>
                                     ))
                                 }
                             </ul>
-                            <span>Showing between {(page - 1) * PER_PAGE} - {page * PER_PAGE} of {total} items</span>
+                            <span>Showing between {((page - 1) * PER_PAGE) + 1} - {page * PER_PAGE} of {total} items</span>
                         </div>
                     </div>
                 )

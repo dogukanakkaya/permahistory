@@ -5,14 +5,22 @@ class HistoryContract {
     }
 
     addHistoryItem() {
-        const { title, description, content, tags, createdBy, createdAt } = this.action.input.history;
+        const { title, description, content, tags, visibility, createdBy, createdAt } = this.action.input.history;
 
-        if (typeof title !== 'string' || typeof content !== 'string') {
+        if (typeof title !== 'string') {
             throw new Error('Invalid input: title, description, and content should be strings.');
         }
 
+        if (!['private', 'public'].includes(visibility)) {
+            throw new Error('Invalid input: visibility should be private or public.');
+        }
+
+        if (typeof content !== 'object') {
+            throw new Error('Invalid input: content should be an object.');
+        }
+
         if (!Array.isArray(tags)) {
-            throw new Error('Invalid input: tags should be array of strings.');
+            throw new Error('Invalid input: tags should be an array of strings.');
         }
 
         const item = {
@@ -21,6 +29,7 @@ class HistoryContract {
             description,
             content,
             tags,
+            visibility,
             createdBy,
             createdAt
         };
@@ -35,8 +44,20 @@ class HistoryContract {
 
         let history = [...this.state.history];
 
-        if (query.filterBy?.address) {
-            history = history.filter(item => item.createdBy === query.filterBy.address);
+        function filterFn(item, filterBy = {}) {
+            if (filterBy.address && item.createdBy !== filterBy.address) {
+                return false;
+            }
+
+            if (filterBy.visibility && !filterBy.visibility.includes(item.visibility)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        if (query.filterBy) {
+            history = history.filter(item => filterFn(item, query.filterBy));
         }
 
         if (query.orderBy) {

@@ -28,3 +28,10 @@ export const timeSince = (date: Date) => {
 
     return `${Math.floor(seconds)} seconds`;
 }
+
+const encryptionOptions = {
+    algorithm: "RSA-OAEP",
+    hash: "SHA-256",
+};
+export const arweaveEncrypt = (value: string): Promise<Uint8Array> => window.arweaveWallet.encrypt(value, encryptionOptions);
+export const arweaveDecrypt = (value: Uint8Array): Promise<string> => window.arweaveWallet.decrypt(value, encryptionOptions);
