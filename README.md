@@ -18,8 +18,8 @@ well as this website (will be deployed to blockchain).
 
 ## To Do
 
-- [] Option to connect with Arweave Web Wallet as well as ArConnect (is
-  necessary?).
+- [ ] Option to connect with Arweave Web Wallet as well as ArConnect (is
+      necessary?).
 - [ ] Functionality to send messages to future and allow decryption only at
       certain date.
 - [ ] Send writings as mails at certain date.
