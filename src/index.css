@@ -21,6 +21,23 @@ body {
     @apply align-middle;
 }
 
+[type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select {
+    @apply border-2 focus:border-red-500 focus:ring-red-500 dark:text-white dark:bg-black;
+}
+
+.rti--container {
+    --rti-radius: 0;
+    @apply flex-wrap-reverse border-2 focus:border-red-500 focus:ring-red-500 focus-within:border-red-500 focus-within:ring-red-500 dark:text-white dark:bg-black focus-within:shadow-none;
+}
+
+.rti--input {
+    @apply w-full;
+}
+
+.rti--tag {
+    @apply border-2  focus-within:ring-red-500 dark:text-white dark:bg-gray-800;
+}
+
 summary::-webkit-details-marker, summary::marker {
     display: none;
     content: "";

@@ -5,17 +5,22 @@ class HistoryContract {
     }
 
     addHistoryItem() {
-        const { title, description, content } = this.action.input.history;
+        const { title, description, content, tags } = this.action.input.history;
 
         if (typeof title !== 'string' || typeof content !== 'string') {
             throw new Error('Invalid input: title, description, and content should be strings.');
         }
 
+        if (!Array.isArray(tags)) {
+            throw new Error('Invalid input: tags should be array of strings.');
+        }
+
         const item = {
-            id: this.state.history.length,
+            id: this.state.history.length, // change this later
             title,
             description,
-            content
+            content,
+            tags
         };
 
         this.state.history.push(item);
