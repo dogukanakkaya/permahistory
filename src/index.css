@@ -10,7 +10,7 @@ body {
 }
 
 .nav-item{
-    @apply mb-5 sm:mb-0 sm:mr-6 block items-center hover:text-gray-50 transition-colors duration-200;    
+    @apply mb-5 sm:mb-0 sm:mr-6 block items-center hover:text-gray-600 dark:hover:text-gray-50 transition-colors duration-200;    
 }
 
 .text-main {
@@ -27,7 +27,7 @@ body {
 
 .rti--container {
     --rti-radius: 0;
-    @apply flex-wrap-reverse border-2 focus:border-red-500 focus:ring-red-500 focus-within:border-red-500 focus-within:ring-red-500 dark:text-white dark:bg-black focus-within:shadow-none;
+    @apply flex-wrap-reverse border-2 border-gray-200 focus:border-red-500 focus:ring-red-500 focus-within:border-red-500 focus-within:ring-red-500 dark:text-white dark:bg-black focus-within:shadow-none;
 }
 
 .rti--input {
