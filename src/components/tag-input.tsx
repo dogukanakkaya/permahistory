@@ -7,7 +7,7 @@ export default function TagInput({ tags, setTags, ...otherProps }: Props) {
                 value={tags}
                 separators={Object.values(Delimiter).filter(v => typeof v === 'string') as string[]}
                 onChange={setTags}
-                placeHolder='Enter tags (not encrypted even for private writings, so you can search for)'
+                placeHolder='Enter tags'
             />
         </div>
     )

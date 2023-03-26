@@ -27,10 +27,10 @@ export default function Header() {
                     <div className="h-full overflow-y-auto sm:flex sm:justify-end sm:items-center overflow-hidden bg-white dark:bg-[#010102] mr-36 sm:mr-0">
                         <ul className='mx-5 mt-20 sm:mt-0 sm:mx-0 flex flex-col sm:flex-row items-start'>
                             <li><Link href="/history" className="nav-item font-semibold">History</Link></li>
-                            <li className='relative'>
-                                <Link href="/history?my=1">
-                                    <span className="nav-item cursor-pointer font-semibold">My History</span>
-                                    <span className="flex absolute h-1.5 w-1.5 -right-2 sm:right-4 top-0">
+                            <li>
+                                <Link href="/history?my=1" className="nav-item relative">
+                                    <span className="cursor-pointer font-semibold">My History</span>
+                                    <span className="flex absolute h-1.5 w-1.5 -right-2 top-0">
                                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                         <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
                                     </span>
