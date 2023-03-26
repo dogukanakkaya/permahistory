@@ -1,0 +1,28 @@
+{
+  "name": "permahistory",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "preact": "^10.13.0",
+    "preact-router": "^4.1.0",
+    "react-markdown": "^8.0.6",
+    "typewriter-effect": "^2.19.0",
+    "vite-tsconfig-paths": "^4.0.7"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.5.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0",
+    "warp-contracts": "^1.3.2",
+    "warp-contracts-plugin-deploy": "^1.0.1"
+  }
+}
