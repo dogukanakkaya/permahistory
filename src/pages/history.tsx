@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import HistoryItem from '@/components/history-item';
 import Loading from '@/components/loading';
-import { contract } from '@/warp/client';
+import { contract } from '@/warp-client';
 import { Link, useRouter } from 'preact-router';
 import useArConnect from '@/context/useArConnect';
 import { HistoryItemType, WriteRouteParameters } from '@/zod';
@@ -38,6 +38,8 @@ export default function History() {
                     }
                 }
             });
+
+            console.log(result);
 
             setHistory(result.history);
             setTotal(result.total);
@@ -77,7 +79,7 @@ export default function History() {
                                     ))
                                 }
                             </ul>
-                            <span>Showing {(page - 1) * PER_PAGE} - {page * PER_PAGE} of {total}</span>
+                            <span>Showing between {(page - 1) * PER_PAGE} - {page * PER_PAGE} of {total} items</span>
                         </div>
                     </div>
                 )

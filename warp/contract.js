@@ -88,6 +88,14 @@ export function handle(state, action) {
         return contract.getHistory();
     } else if (action.input.function === 'getHistoryById') {
         return contract.getHistoryById();
+    } else if (action.input.function === 'evolve' && state.canEvolve) {
+        if (SmartWeave.contract.owner !== action.caller) {
+            throw new ContractError('Only the owner can evolve a contract.');
+        }
+
+        state.evolve = action.input.value;
+
+        return { state };
     }
 
     throw new Error('Invalid function.');

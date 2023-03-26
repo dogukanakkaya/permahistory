@@ -1,0 +1,1 @@
+export const contractTxId = 'mjxr29mhZRSBxCHtK3b7fDJNAse1rY7mAJMIwHqKl8g';

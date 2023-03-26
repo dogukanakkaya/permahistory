@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "warp:deploy": "npx ts-node --esm src/warp/deploy.ts"
+    "warp:deploy": "npx ts-node --esm warp/deploy.ts",
+    "warp:evolve": "npx ts-node --esm warp/evolve.ts"
   },
   "dependencies": {
     "arweave": "^1.13.4",

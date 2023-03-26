@@ -25,4 +25,4 @@ cache
 *.sw?
 
 # Secrets
-src/warp/keyfile.json
+warp/keyfile.json

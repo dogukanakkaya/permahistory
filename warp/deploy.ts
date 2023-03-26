@@ -15,9 +15,9 @@ const warp = WarpFactory.forMainnet().use(new DeployPlugin());
 
     const { contractTxId } = await warp.deploy({
         wallet: new ArweaveSigner(keyfile),
-        initState: JSON.stringify({ history: [], id: 1 }),
+        initState: JSON.stringify({ canEvolve: true, evolve: null, history: [], id: 1 }),
         src: contractSrc,
     });
 
-    fs.writeFileSync(path.join(__dirname, './transaction.ts'), `export const contractTxId = '${contractTxId}';`);
+    fs.writeFileSync(path.join(__dirname, './transaction.json'), `export const contractTxId = '${contractTxId}';`);
 }().catch(console.log);
