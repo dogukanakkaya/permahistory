@@ -85,9 +85,9 @@ export default function Write() {
                                     {
                                         loading ? <Loading /> :
                                             <>
-                                                <button onClick={() => { }} className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 mr-4">
+                                                {/* <button onClick={() => { }} className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 mr-4">
                                                     Save Privately <i className='bi bi-lock ml-2'></i>
-                                                </button>
+                                                </button> */}
                                                 <button onClick={transact} className="font-semibold text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:outline-none shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 rounded-lg text-sm px-5 py-2.5">
                                                     Save Publicly <i className='bi bi-save ml-2'></i>
                                                 </button>

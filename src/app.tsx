@@ -1,13 +1,13 @@
 import Router from 'preact-router'
 import Footer from './components/footer'
 import Header from './components/header'
+import ErrorBoundary from './components/error-boundary';
 import Home from './pages'
 import Faq from './pages/faq'
 import Write from './pages/write'
 import { ArConnectProvider } from './context/useArConnect'
 import History from './pages/history'
 import HistoryById from './pages/history-by-id'
-import ErrorBoundary from './components/error-boundary';
 
 export function App() {
   return (

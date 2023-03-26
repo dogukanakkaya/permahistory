@@ -40,7 +40,7 @@ export default function Home() {
                                     .pauseFor(1000)
                                     .typeString('<i class="bi bi-chevron-right text-xs text-main"></i> Maybe a <b>permanent</b> future guess about the human kind?\n\n')
                                     .pauseFor(1000)
-                                    .typeString('<i class="bi bi-chevron-right text-xs text-main"></i> Or maybe just a <b>permanent</b> note from the past?')
+                                    .typeString('<i class="bi bi-chevron-right text-xs text-main"></i> Or maybe just some random <b>permanent</b> note from the past?')
                                     .pauseFor(1000)
                                     .deleteAll()
                                     .start();
