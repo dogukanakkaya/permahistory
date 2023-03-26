@@ -22,9 +22,7 @@ well as this website (will be deployed to blockchain).
       necessary?).
 - [ ] Functionality to send messages to future and allow decryption only at
       certain date.
-- [ ] Send writings as mails at certain date.
-- [x] Pagination for history.
-- [ ] Writing testaments.
+- [ ] Send writings as mails at certain date as a reminder.
 - [ ] Search, Like and Save feature.
 - [ ] Uploading certificates and other important documents that people have.
 
