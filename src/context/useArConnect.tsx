@@ -1,19 +1,20 @@
 import { type PermissionType } from 'arconnect';
 import { createContext } from 'preact';
-import { useContext, useEffect, useState } from 'preact/hooks';
+import { useCallback, useContext, useEffect, useState } from 'preact/hooks';
 import { type ComponentChildren } from "preact";
 import { useRouter } from 'preact-router';
 import { APP_LOGO, APP_NAME } from '@/config';
 
 interface Context {
     arConnectLoaded: boolean;
+    getPublicKey: () => Promise<string> | undefined;
 }
 
 interface ContextProps {
     children: ComponentChildren;
 }
 
-const NEEDED_PERMISSIONS: PermissionType[] = ['SIGN_TRANSACTION', 'ENCRYPT', 'DECRYPT', 'ACCESS_PUBLIC_KEY'];
+const NEEDED_PERMISSIONS: PermissionType[] = ['SIGN_TRANSACTION', 'ENCRYPT', 'DECRYPT', 'ACCESS_ADDRESS'];
 
 const ArConnectContext = createContext<Context>({} as Context);
 
@@ -39,16 +40,22 @@ export const ArConnectProvider = (props: ContextProps) => {
         }
     }
 
+    const getPublicKey = useCallback(() => {
+        if (arConnectLoaded) {
+            return window.arweaveWallet.getActiveAddress();
+        }
+    }, [arConnectLoaded]);
+
     useEffect(() => {
         window.addEventListener('arweaveWalletLoaded', handleArWalletLoaded);
 
         handleWalletConnection();
 
         return () => window.removeEventListener('arweaveWalletLoaded', handleArWalletLoaded);
-    }, [router[0].path, arConnectLoaded]);
+    }, [router[0].path]);
 
     return (
-        <ArConnectContext.Provider value={{ arConnectLoaded }}>
+        <ArConnectContext.Provider value={{ arConnectLoaded, getPublicKey }}>
             {props.children}
         </ArConnectContext.Provider>
     )

@@ -1,6 +1,7 @@
 import Loading from '@/components/loading';
 import TagInput from '@/components/tag-input';
-import useArConnect from '@/context/useArconnect';
+import { APP_NAME } from '@/config';
+import useArConnect from '@/context/useArConnect';
 import { contract } from '@/warp/client';
 import { useState } from 'preact/hooks';
 
@@ -11,8 +12,7 @@ function Write() {
     const [tags, setTags] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState<Result | null>(null);
-
-    const { arConnectLoaded } = useArConnect();
+    const { arConnectLoaded, getPublicKey } = useArConnect();
 
     async function transact() {
         if (tags.length > 3) {
@@ -30,10 +30,18 @@ function Write() {
         try {
             const result = await contract.writeInteraction({
                 function: "addHistoryItem",
-                history: { title, description, content, tags }
+                history: {
+                    title,
+                    description,
+                    content,
+                    tags,
+                    createdBy: await getPublicKey(),
+                    createdAt: new Date().toISOString()
+                },
+                tags: [
+                    { name: 'App-Name', value: APP_NAME }
+                ]
             });
-
-            console.log(result);
 
             setTitle('');
             setDescription('');
@@ -56,11 +64,6 @@ function Write() {
 
     return (
         <>
-            {/* <Head>
-                <title>Permahistory - Write</title>
-                <meta name="description" content="" />
-            </Head> */}
-
             {
                 arConnectLoaded ? (
                     <div className="min-h-[calc(100vh-theme('spacing.40'))] container my-10">
@@ -68,7 +71,7 @@ function Write() {
                             <div className='md:w-5/6 lg:w-2/3'>
                                 <div className='text-center mb-4'>
                                     <h1 className='lg:text-4xl'>Write anything...</h1>
-                                    <p className='text-xs sm:text-sm text-gray-400'>remember that you have to pay some transaction fees for {`>`}100kb data size in order to add your writings to the blockchain.</p>
+                                    <p className='text-xs sm:text-sm text-gray-400'>remember that you have to pay some transaction fees for {`>`}100kb data size</p>
                                 </div>
                                 <form>
                                     <div className="mb-3">
@@ -78,7 +81,7 @@ function Write() {
                                         <input onChange={e => setDescription((e.target as HTMLInputElement).value)} type="text" value={description} placeholder='Enter your description' className='px-4 py-2 w-full outline-none dark:text-white dark:bg-black' />
                                     </div>
                                     <div className="mb-3">
-                                        <textarea onChange={e => setContent((e.target as HTMLInputElement).value)} rows={10} value={content} placeholder='Enter your content *' className='px-4 py-2 w-full outline-none dark:text-white dark:bg-black' ></textarea>
+                                        <textarea onChange={e => setContent((e.target as HTMLInputElement).value)} rows={10} value={content} placeholder='Enter your content * (markdown &#10003;)' className='px-4 py-2 w-full outline-none dark:text-white dark:bg-black' ></textarea>
                                     </div>
                                     <TagInput tags={tags} setTags={setTags} className="mb-3" />
                                 </form>

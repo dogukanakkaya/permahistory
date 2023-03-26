@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import HistoryItem, { type HistoryItem as HistoryItemType } from '../components/history-item';
 import Loading from '../components/loading';
 import { contract } from '@/warp/client';
+import useArConnect from '@/context/useArConnect';
 
-function History() {
+function MyHistory() {
     const [loading, setLoading] = useState(false);
     const [history, setHistory] = useState<HistoryItemType[]>([]);
+    const { arConnectLoaded, getPublicKey } = useArConnect();
 
     const getTransactions = async () => {
         const loadingTimeout = setTimeout(() => {
@@ -13,9 +15,12 @@ function History() {
         }, 500);
 
         try {
-            const { cachedValue } = await contract.readState();
-            const state = cachedValue.state as { history: HistoryItemType[], [key: string]: any };
-            setHistory(state.history)
+            const { result } = await contract.viewState({
+                function: 'getMyHistory',
+                query: { address: await getPublicKey() }
+            });
+
+            setHistory(result as HistoryItemType[])
 
             clearTimeout(loadingTimeout);
         } catch (err) {
@@ -25,8 +30,10 @@ function History() {
     }
 
     useEffect(() => {
-        getTransactions();
-    }, [])
+        if (arConnectLoaded) {
+            getTransactions();
+        }
+    }, [arConnectLoaded])
 
     return (
         <>
@@ -49,4 +56,4 @@ function History() {
     )
 }
 
-export default History
+export default MyHistory

@@ -5,7 +5,7 @@ class HistoryContract {
     }
 
     addHistoryItem() {
-        const { title, description, content, tags } = this.action.input.history;
+        const { title, description, content, tags, createdBy, createdAt } = this.action.input.history;
 
         if (typeof title !== 'string' || typeof content !== 'string') {
             throw new Error('Invalid input: title, description, and content should be strings.');
@@ -20,10 +20,26 @@ class HistoryContract {
             title,
             description,
             content,
-            tags
+            tags,
+            createdBy,
+            createdAt
         };
 
         this.state.history.push(item);
+
+        return { state: this.state };
+    }
+
+    getMyHistory() {
+        const { address } = this.action.input.query;
+
+        if (!address) {
+            throw new Error('Invalid input: address required to query history.');
+        }
+
+        const result = this.state.history.filter(item => item.createdBy === address);
+
+        return { result };
     }
 }
 
@@ -31,10 +47,10 @@ export function handle(state, action) {
     const contract = new HistoryContract(state, action);
 
     if (action.input.function === 'addHistoryItem') {
-        contract.addHistoryItem();
-    } else {
-        throw new Error('Invalid function.');
+        return contract.addHistoryItem();
+    } else if (action.input.function === 'getMyHistory') {
+        return contract.getMyHistory();
     }
 
-    return { state };
+    throw new Error('Invalid function.');
 }
