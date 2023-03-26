@@ -13,13 +13,18 @@ const faq = [
     },
     {
         id: '2',
-        title: 'What can i write?',
+        title: 'What can I write?',
         content: 'You can write everything, notes, diaries, future thoughts etc. One day, even testaments maybe.'
     },
     {
         id: '3',
-        title: 'Do i have to pay?',
+        title: 'Do I have to pay?',
         content: 'Not to Permahistory. Nevertheless you have to pay some transaction fees with **AR coin** depends on the size of what you write. **<100kb is free!**'
+    },
+    {
+        id: '4',
+        title: 'Private writings',
+        content: 'Be careful when you save your data privately. It won\'t be listed in history page but **only content is encrypted.** Even though private writings are not listed in history page, title and description can be seen by anyone who query the smart contract directly. So if you have sensitive data add it to the content instead of title or description.'
     }
 ];
 
