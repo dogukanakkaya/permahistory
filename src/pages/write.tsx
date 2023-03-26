@@ -2,7 +2,7 @@ import Loading from '@/components/loading';
 import TagInput from '@/components/tag-input';
 import { APP_NAME } from '@/config';
 import useArConnect from '@/context/useArConnect';
-import { contract } from '@/warp/client';
+import { contract } from '@/warp-client';
 import { HistoryItem } from '@/zod';
 import { useState } from 'preact/hooks';
 import { z } from 'zod';

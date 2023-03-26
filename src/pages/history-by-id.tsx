@@ -1,4 +1,4 @@
-import { contract } from '@/warp/client';
+import { contract } from '@/warp-client';
 import { HistoryItemType } from '@/zod';
 import { useRouter } from 'preact-router';
 import { useEffect, useState } from 'preact/hooks';
