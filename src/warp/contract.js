@@ -65,6 +65,18 @@ class HistoryContract {
             }
         };
     }
+
+    getHistoryById() {
+        const { id } = this.action.input.query;
+
+        const item = this.state.history.find(item => item.id === parseInt(id));
+
+        return {
+            result: {
+                item
+            }
+        };
+    }
 }
 
 export function handle(state, action) {
@@ -74,6 +86,8 @@ export function handle(state, action) {
         return contract.addHistoryItem();
     } else if (action.input.function === 'getHistory') {
         return contract.getHistory();
+    } else if (action.input.function === 'getHistoryById') {
+        return contract.getHistoryById();
     }
 
     throw new Error('Invalid function.');
