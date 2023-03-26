@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "warp:deploy": "node src/warp/deploy.js"
   },
   "dependencies": {
     "preact": "^10.13.0",

@@ -1,64 +1,35 @@
 class HistoryContract {
-    constructor(state, action, input) {
+    constructor(state, action) {
         this.state = state;
         this.action = action;
-        this.input = input;
     }
 
     addHistoryItem() {
-        const { title, description, content } = this.input;
+        const { title, description, content } = this.action.input.history;
 
-        if (typeof title !== 'string' || typeof description !== 'string' || typeof content !== 'string') {
+        if (typeof title !== 'string' || typeof content !== 'string') {
             throw new Error('Invalid input: title, description, and content should be strings.');
         }
 
-        const newItem = {
+        const item = {
             id: this.state.history.length,
             title,
             description,
-            content,
+            content
         };
 
-        this.state.history.push(newItem);
-        return this.state;
-    }
-
-    getHistory() {
-        // const { start, limit } = this.input;
-
-        return this.state.history;
-    }
-
-    getHistoryItem() {
-        const { id } = this.input;
-
-        if (typeof id !== 'number') {
-            throw new Error('Invalid input: id should be a number.');
-        }
-
-        const item = this.state.history.find((item) => item.id === id);
-
-        if (!item) {
-            throw new Error('Item not found.');
-        }
-
-        return item;
+        this.state.history.push(item);
     }
 }
 
-function handle(state, action) {
-    const input = JSON.parse(action.input);
-    const contract = new HistoryContract(state, action, input);
+export function handle(state, action) {
+    const contract = new HistoryContract(state, action);
 
-    if (action.method === 'addHistoryItem') {
-        return contract.addHistoryItem();
+    if (action.input.function === 'addHistoryItem') {
+        contract.addHistoryItem();
+    } else {
+        throw new Error('Invalid function.');
     }
 
-    if (action.method === 'getHistoryItem') {
-        return contract.getHistoryItem();
-    }
-
-    throw new Error('Invalid method.');
+    return { state };
 }
-
-export { handle };
